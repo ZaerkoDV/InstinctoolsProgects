@@ -12,13 +12,16 @@ package com.zaerko.reducerlinks.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -44,48 +47,42 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Zaerko Denis
  */
 @Entity(name="Link")
-@Table(name="links")
+@Table(name="basic.links")
 public class Link {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_link")
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+	@SequenceGenerator(name = "seq_gen", sequenceName = "basic.id_link_seq",initialValue=1, allocationSize=1)
+	@Column(name="id_link",columnDefinition="integer",unique=true, nullable = false)
 	private Long idLink;
-	
-	@Column(name="link_note")
+
+	@Column(name="link_note",columnDefinition="text")
 	private String linkNote;
-	
+
 	@NotEmpty
-	@Column(name="link_full_url")
+	@Column(name="link_full_url", columnDefinition="text", nullable=false)
 	private String linkFullURL;
-	
+
 	@NotEmpty
-	@Column(name="link_short_url")
+	@Column(name="link_short_url",columnDefinition="text")
 	private String linkShortURL;
-	
+
 	@NotEmpty
-	@Column(name="tag", nullable = false, columnDefinition="text default 'all'")
-	private String tag;
-	
+	@Column(name="tag",columnDefinition="text default 'all'", nullable=false)
+	private String urlTag;
+
 	@NotEmpty
-	@Column(name="sum_click", nullable = false, columnDefinition="bigint default '0'")
+	@Column(name="sum_click", columnDefinition="bigint default '0'", nullable=false)
 	private Long sumClick;
-	
+
 	/**
 	 * Connect link with his author.
 	 */
-	@ManyToOne
-	@JoinColumn(name="author_id")
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="author_id",columnDefinition="integer", nullable=false)
 	private Author author;
-	
-	/**
-	 * Empty constructor of class Link. Suppresses default constructor, ensuring
-	 * non-instantiability.
-	 */
-	public Link(){
-	}
-	
-	
+
 	/**
 	 * Overloaded constructor of class Link.
 	 * 
@@ -97,18 +94,25 @@ public class Link {
 	 * @param linkNote
 	 * @param linkFullURL
 	 * @param linkShortURL
-	 * @param tag
+	 * @param urlTag
 	 * @param sumClick
 	 * @param author
 	 */
-	public Link(Long idLink, String linkNote, String linkFullURL, String linkShortURL, String tag, Long sumClick,Author author) {
+	public Link(Long idLink, String linkNote, String linkFullURL, String linkShortURL, String urlTag, Long sumClick,Author author) {
 		this.idLink = idLink;
 		this.linkNote=linkNote;
 		this.linkFullURL=linkFullURL;
 		this.linkShortURL=linkShortURL;
-		this.tag=tag;
+		this.urlTag=urlTag;
 		this.sumClick=sumClick;
 		this.author=author;
+	}
+
+	/**
+	 * Empty constructor of class Link. Suppresses default constructor, ensuring
+	 * non-instantiability.
+	 */
+	public Link(){
 	}
 
 	/**
@@ -183,25 +187,25 @@ public class Link {
 	public void setLinkShortURL(String linkShortURL) {
 		this.linkShortURL = linkShortURL;
 	}
-
+	
 	/**
 	 * @type String
-	 * @return tag attribute of the Link
+	 * @return urlTag attribute of the Link
 	 */
-	public String getTag() {
-		return tag;
+	public String getUrlTag() {
+		return urlTag;
 	}
 
 	/**
 	 * Parameter tag is attribute of the Link
 	 * 
 	 * @type String
-	 * @param tag
+	 * @param urlTag
 	 */
-	public void setTag(String tag) {
-		this.tag = tag;
+	public void setUrlTag(String urlTag) {
+		this.urlTag = urlTag;
 	}
-
+	
 	/**
 	 * @type Long
 	 * @return sumClick
@@ -237,21 +241,21 @@ public class Link {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	
+
 	/**
 	 * Overload basic method toString()
 	 * 
 	 * @type String
 	 * @return Link attributes as string.
 	 */
-	@Override
-	public String toString() {
-		if(!this.idLink.equals(null)){
-			return this.idLink.toString()+" "+this.linkNote+" "+ this.linkFullURL+" "
-					+this.linkShortURL+" "	+this.tag+" "+this.sumClick.toString();
-		}
-		return super.toString();
-	}
+//	@Override
+//	public String toString() {
+//		if(!this.idLink.equals(null)){
+//			return this.idLink.toString()+" "+this.linkNote.toString()+" "+ this.linkFullURL.toString()+" "
+//					+this.linkShortURL+" "	+this.urlTag.toString()+" "+this.sumClick.toString();
+//		}
+//		return super.toString();
+//	}
 
 	/**
 	 * Overload basic method hashCode()
@@ -273,17 +277,16 @@ public class Link {
 	 * @return true if object is Link or false else.
 	 * @throws NullPointerException if objrct is null
 	 */
-//	@Override
-//	public boolean equals(Object obj) {
-//		boolean result = false;
-//		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
-//
-//			final Link other = (Link) obj;
-//			if (this.idLink.equals(other.idLink)) {
-//				result = true;
-//			}
-//		}
-//		return result;
-//	}
+	//	public boolean equalsObject(Object obj) {
+	//		boolean result = false;
+	//		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
+	//
+	//			final Link other = (Link) obj;
+	//			if (this.idLink.equals(other.idLink)) {
+	//				result = true;
+	//			}
+	//		}
+	//		return result;
+	//	}
 
 }

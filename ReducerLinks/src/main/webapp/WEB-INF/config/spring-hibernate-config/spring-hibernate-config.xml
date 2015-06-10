@@ -55,29 +55,28 @@
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 				<beans:prop key="hibernate.format_sql">true</beans:prop>
 				<beans:prop key="connection.pool_size">1</beans:prop>
-				<!--<beans:prop key="hibernate.current_session_context_class">thread</beans:prop>-->
+				<beans:prop key="hibernate.id.new_generator_mappings">true</beans:prop>
 				<beans:prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</beans:prop>
 				<!--create new bd when start aplication-->
-				<!--<beans:prop  key="hibernate.hbm2ddl.auto">create</beans:prop>-->
+				<!--<beans:prop  key="hibernate.hbm2ddl.auto">update</beans:prop>-->
 			</beans:props>
 		</beans:property>
 	</beans:bean>
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-<!--
 	<beans:bean id="authorDAO" class="com.zaerko.reducerlinks.dao.AuthorDAO">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-
+<!--
 	<beans:bean id="authorService" class="com.zaerko.reducerlinks.service.AuthorService">
 		<beans:property name="authorDAO" ref="authorDAO"></beans:property>
 	</beans:bean>
-	
+ -->
 	<beans:bean id="linkDAO" class="com.zaerko.reducerlinks.dao.LinkDAO">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-
+<!--
 	<beans:bean id="linkService" class="com.zaerko.reducerlinks.service.LinkService">
 		<beans:property name="linkDAO" ref="linkDAO"></beans:property>
 	</beans:bean>

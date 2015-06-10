@@ -11,6 +11,7 @@
 package com.zaerko.reducerlinks.model;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,19 +19,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * 
  * <p>The class is located in the package com.zaerko.reducerlinks.model and describes
  * part of model in MVC architecture. This class includes a description of author 
  * entity. Class use Hibernate technology (anatations) to interconnections with 
  * database reducer_link.Class describes the database table authors.Class contains
  * exclusively no-static public methods that return fields of entity.Methods intended
- * to assess object fields.Class also contain overload methods toString(), hashCode(),
+ * to access object fields.Class also contain overload methods toString(), hashCode(),
  * equals(). Class contains exclusively private fields.Fields has basic types String
  * or Long and custom data type Link. Class Author associeted with the class Link as
  * one to many.For associated with class Link use private List link which return set
@@ -44,54 +46,49 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Zaerko Denis
  */
 @Entity(name="Author")
-@Table(name="authors")
+@Table(name="basic.authors")
 public class Author {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_author")
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_genn")
+	@SequenceGenerator(name = "seq_genn", sequenceName = "basic.id_author_seq", initialValue=1, allocationSize=1)
+	@Column(name="id_author",columnDefinition="integer",unique=true, nullable = false)
 	private Long idAuthor;
 
 	@NotEmpty
-	@Size(min=1, max=15)
-	@Column(name="name")
+	@Size(min=1, max=25)
+	@Column(name="first_name", columnDefinition="text",nullable=false)
 	private String name;
 
 	@NotEmpty
-	@Size(min=1, max=15)
-	@Column(name="surname")
+	@Size(min=1, max=25)
+	@Column(name="last_name",columnDefinition="text", nullable=false)
 	private String surname;
 
-	@Size(min=1, max=15)
-	@Column(name="patronymic")
+	@Size(min=0, max=25)
+	@Column(name="middle_name",columnDefinition="text")
 	private String patronymic;
 
 	@NotEmpty
-	@Column(name="e_mail")
+	@Column(name="e_mail",columnDefinition="text", nullable=false)
 	private String email;
 
 	@NotEmpty
 	@Size(min=4)
-	@Column(name="login")
+	@Column(name="login",columnDefinition="text", nullable=false)
 	private String login;
 
 	@NotEmpty
 	@Size(min=4)
-	@Column(name="password")
+	@Column(name="password",columnDefinition="text", nullable=false)
 	private String password;
 
 	/**
 	 * Connect author with his links.
 	 */
-	@OneToMany(targetEntity=Link.class , mappedBy="authors",fetch = FetchType.LAZY)
+	@OneToMany(targetEntity=Link.class, mappedBy="author", fetch = FetchType.LAZY)
 	private List<Link> link;
-
-	/**
-	 * Empty constructor of class Author. Suppresses default constructor,
-	 * ensuring non-instantiability.
-	 */
-	public Author(){
-	}
 
 	/**
 	 * Overloaded constructor of class Author.
@@ -121,6 +118,13 @@ public class Author {
 		this.link=link;
 	}
 
+	/**
+	 * Empty constructor of class Author. Suppresses default constructor,
+	 * ensuring non-instantiability.
+	 */
+	public Author(){
+	}
+	
 	/**
 	 * @type Long
 	 * @return idAuthor attribute of the Author
@@ -301,8 +305,7 @@ public class Author {
 	 * @return true if object is Author or false else.
 	 * @throws NullPointerException if objrct is null
 	 */
-//	@Override
-//	public boolean equals(Object obj) {
+//	public boolean equalsObject(Object obj) {
 //		boolean result = false;
 //		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
 //
