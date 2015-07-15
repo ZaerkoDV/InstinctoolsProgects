@@ -72,7 +72,7 @@
 	<beans:bean id="authorService" class="com.zaerko.reducerlinks.service.AuthorService">
 		<beans:property name="authorDAO" ref="authorDAO"></beans:property>
 	</beans:bean>
- -->
+  -->
 	<beans:bean id="linkDAO" class="com.zaerko.reducerlinks.dao.LinkDAO">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -80,7 +80,7 @@
 	<beans:bean id="linkService" class="com.zaerko.reducerlinks.service.LinkService">
 		<beans:property name="linkDAO" ref="linkDAO"></beans:property>
 	</beans:bean>
--->
+ -->
 
 	<context:annotation-config/>
 	

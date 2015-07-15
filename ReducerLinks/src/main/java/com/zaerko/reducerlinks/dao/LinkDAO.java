@@ -21,7 +21,6 @@ import org.springframework.orm.hibernate4.HibernateObjectRetrievalFailureExcepti
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.zaerko.reducerlinks.model.Author;
 import com.zaerko.reducerlinks.model.Link;
 
 /**

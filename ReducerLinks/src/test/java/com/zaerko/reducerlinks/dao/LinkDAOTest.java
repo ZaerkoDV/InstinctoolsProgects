@@ -99,37 +99,37 @@ public class LinkDAOTest extends AbstractTest {
 		return link;
 	}
 
-//	/**
-//	 * Method testCRUDLink are testing set of CRUD operations. 
-//	 * That method initiating to create new object for test
-//	 * @throws IllegalAccessException 
-//	 * @throws InstantiationException 
-//	 * 
-//	 * @see org.springframework.transaction.annotation.Transactional
-//	 * @see org.springframework.test.annotation.Rollback
-//	 * @see org.junit.Test
-//	 */
-//	@Transactional
-//	@Rollback(true)
-//	@Test
-//	public void testCRUDLink(){
-//
-//		// check new link by ID
-//		Assert.assertNotNull(linkDAO.getLinkById(link.getIdLink()));
-//
-//		//update field of object link.
-//		final String updateFullURL= "http://testFullURL2";
-//		link.setLinkFullURL(updateFullURL);
-//		linkDAO.updateLink(link);
-//
-//		// check if link was changed return true
-//		final Link updatedLink =linkDAO.getLinkById(link.getIdLink());	
-//		Assert.assertTrue(updatedLink.getLinkFullURL().equals(updateFullURL));
-//
-//		//remove link
-//		linkDAO.removeLink(updatedLink.getIdLink());
-//		Assert.assertNull(linkDAO.getLinkById(link.getIdLink()));
-//	}
+	/**
+	 * Method testCRUDLink are testing set of CRUD operations. 
+	 * That method initiating to create new object for test
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * 
+	 * @see org.springframework.transaction.annotation.Transactional
+	 * @see org.springframework.test.annotation.Rollback
+	 * @see org.junit.Test
+	 */
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testCRUDLink(){
+
+		// check new link by ID
+		Assert.assertNotNull(linkDAO.getLinkById(link.getIdLink()));
+
+		//update field of object link.
+		final String updateFullURL= "http://testFullURL2";
+		link.setLinkFullURL(updateFullURL);
+		linkDAO.updateLink(link);
+
+		// check if link was changed return true
+		final Link updatedLink =linkDAO.getLinkById(link.getIdLink());	
+		Assert.assertTrue(updatedLink.getLinkFullURL().equals(updateFullURL));
+
+		//remove link
+		linkDAO.removeLink(updatedLink.getIdLink());
+		Assert.assertNull(linkDAO.getLinkById(link.getIdLink()));
+	}
 	
 	/**
 	 * Method testGetingLinkListByTag are testing operation of creating
@@ -149,52 +149,52 @@ public class LinkDAOTest extends AbstractTest {
 		Assert.assertFalse(testlinkListByTag.isEmpty());
 	}
 	
-//	/**
-//	 * Method testGetingLinkListByLogin are testing operation of creating
-//	 * a list links by author login. That method initiating to create new
-//	 * test object for test.
-//	 * 
-//	 * @see org.springframework.transaction.annotation.Transactional
-//	 * @see org.springframework.test.annotation.Rollback
-//	 * @see org.junit.Test
-//	 */
-//	//?
-//	@Transactional
-//	@Rollback(true)
-//	@Test
-//	public void testGetingLinkListByLogin() {
-//
-//		List<Link> listLinkByLogin = linkDAO.getLinkListByLogin(link.getAuthor().getLogin());//"log"//link.getAuthor().getLogin()
-//		Assert.assertFalse(listLinkByLogin.isEmpty());
-//	}
+	/**
+	 * Method testGetingLinkListByLogin are testing operation of creating
+	 * a list links by author login. That method initiating to create new
+	 * test object for test.
+	 * 
+	 * @see org.springframework.transaction.annotation.Transactional
+	 * @see org.springframework.test.annotation.Rollback
+	 * @see org.junit.Test
+	 */
+	//?
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testGetingLinkListByLogin() {
 
-//	/**
-//	 * Method testIncreaseNumberLinkVisits are testing operation of computing
-//	 * sum visits on link. That method initiating to create new test object
-//	 * for test.
-//	 * 
-//	 * @see org.springframework.transaction.annotation.Transactional
-//	 * @see org.springframework.test.annotation.Rollback
-//	 * @see org.junit.Test
-//	 */
-//	@Transactional
-//	@Rollback(true)
-//	@Test
-//	public void testIncreaseNumberLinkVisits() {
-//		
-//		//check actual and expected values
-//		Long expected=(long)0;
-//		//new link and actual value is 0
-//		Long actual=linkDAO.increaseNumberLinkVisits(link.getIdLink());
-//		Assert.assertEquals(expected, actual);
-//		
-//		//update actual value now value is 1
-//		link.setSumClick((long)1);
-//		linkDAO.updateLink(link);
-//		
-//		//check actual and expected values after update
-//		expected=(long)1;
-//		actual=linkDAO.increaseNumberLinkVisits(link.getIdLink());
-//		Assert.assertEquals(expected, actual);
-//	}
+		List<Link> listLinkByLogin = linkDAO.getLinkListByLogin(link.getAuthor().getLogin());//"log"//link.getAuthor().getLogin()
+		Assert.assertFalse(listLinkByLogin.isEmpty());
+	}
+
+	/**
+	 * Method testIncreaseNumberLinkVisits are testing operation of computing
+	 * sum visits on link. That method initiating to create new test object
+	 * for test.
+	 * 
+	 * @see org.springframework.transaction.annotation.Transactional
+	 * @see org.springframework.test.annotation.Rollback
+	 * @see org.junit.Test
+	 */
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testIncreaseNumberLinkVisits() {
+		
+		//check actual and expected values
+		Long expected=(long)0;
+		//new link and actual value is 0
+		Long actual=linkDAO.increaseNumberLinkVisits(link.getIdLink());
+		Assert.assertEquals(expected, actual);
+		
+		//update actual value now value is 1
+		link.setSumClick((long)1);
+		linkDAO.updateLink(link);
+		
+		//check actual and expected values after update
+		expected=(long)1;
+		actual=linkDAO.increaseNumberLinkVisits(link.getIdLink());
+		Assert.assertEquals(expected, actual);
+	}
 }

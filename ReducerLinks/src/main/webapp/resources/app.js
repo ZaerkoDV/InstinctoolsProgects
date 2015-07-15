@@ -1,0 +1,41 @@
+/**
+ * 
+ */
+
+var App={};
+var App = angular.module('App',[]);
+
+App.config(['$routeProvider', '$locationProvider', function($routeProvider) {
+
+    $routeProvider.when('/link', {
+        templateUrl: 'link/startPage',
+        controller: LinkController
+    });
+    
+    $routeProvider.when('/author/signup', {
+        templateUrl: 'author/signup',
+        controller: AuthorController
+    });
+
+    $routeProvider.otherwise({redirectTo: '/link'});
+}]);
+
+//Author signin or signup validation
+App.run(function($rootScope, $location) {
+	
+    	// register listener to watch route changes
+		$rootScope.$on("$routeChangeStart", function(event, next, current) {
+        console.log("Operation status="+$rootScope.operationStatus);
+
+        //operationStatus-this is result of operation which set after each cheak request(object)
+        if ($rootScope.operationStatus == '' || $rootScope.operationStatus == null) {
+            // no logged user, we should be going to #login
+            if (next.templateUrl == "author/failure.jsp") {
+                // already going to failure, no redirect needed
+            } else {
+                // not going to failure, we should redirect now
+                $location.path("/author/failure.jsp");
+            }
+        }
+    });
+});

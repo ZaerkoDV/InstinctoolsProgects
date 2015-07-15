@@ -29,5 +29,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/WorkPrograms/eclipse-jee-kepler-SR2-win32/eclipse/plugins/javaQuery.jar"/>
+	<classpathentry kind="lib" path="C:/WorkPrograms/eclipse-jee-kepler-SR2-win32/eclipse/plugins/checkstyle-5.2/checkstyle-5.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

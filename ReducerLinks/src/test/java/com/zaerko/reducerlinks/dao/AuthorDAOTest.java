@@ -29,7 +29,6 @@ import com.zaerko.reducerlinks.model.Author;
  * roll back transaction which created for test. Also in class use Assert   
  * These methods set assertion methods useful for writing tests.
  * 
- * 
  * @see org.springframework.transaction
  * @see javax.inject.Inject
  * @see org.slf4j
