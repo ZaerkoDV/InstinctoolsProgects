@@ -13,16 +13,13 @@ package com.zaerko.reducerlinks.service;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.inject.Inject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.zaerko.reducerlinks.dao.IAuthorDAO;
 import com.zaerko.reducerlinks.model.Author;
-
 /**
  * <p>The class AuthorService use service pattern which describes 
  * Defines the boundary between the application and services layer, which forms

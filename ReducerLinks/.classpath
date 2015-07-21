@@ -28,6 +28,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/WorkPrograms/eclipse-jee-kepler-SR2-win32/eclipse/plugins/javaQuery.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

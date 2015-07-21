@@ -110,7 +110,7 @@ public class LinkDAOTest extends AbstractTest {
 	 * @see org.junit.Test
 	 */
 	@Transactional
-	@Rollback(true)
+	//@Rollback(true)
 	@Test
 	public void testCRUDLink(){
 
