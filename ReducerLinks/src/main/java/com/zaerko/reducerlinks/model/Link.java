@@ -23,6 +23,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -51,7 +52,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Link {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
 	@SequenceGenerator(name = "seq_gen", sequenceName = "basic.id_link_seq",initialValue=1, allocationSize=1)
 	@Column(name="id_link",columnDefinition="integer",unique=true, nullable = false)
@@ -79,7 +79,8 @@ public class Link {
 	/**
 	 * Connect link with his author.
 	 */
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@NotNull
+	@ManyToOne//(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="author_id",columnDefinition="integer", nullable=false)
 	private Author author;
 

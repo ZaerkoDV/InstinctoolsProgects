@@ -133,5 +133,5 @@ public interface IAuthorService {
 	 * @param email
 	 * @return Boolean
 	 */
-	public Boolean isMailAddres(String email);
+	public Boolean isEmailAddres(String email);
 }

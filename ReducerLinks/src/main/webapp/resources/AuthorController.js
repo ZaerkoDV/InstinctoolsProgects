@@ -1,60 +1,114 @@
 /**
- * operationStatus-this is result of operation which set after each cheak request(object) 
+ * AuthorController
  */
-function LoginController($scope, $http, $location, $rootScope) {
-
+var AuthorController = function($scope, $http) {
 	$scope.author = {};
-	$scope.author.name = '';
-	$scope.author.surname = '';
-	$scope.author.patronymic = '';
-	$scope.author.email = '';
-	$scope.author.login = '';
-	$scope.author.password = '';
+	$scope.editMode = false;
 
-	//Create new author
-	$scope.authorSignUp = function(author) {
-		$http.post('author/signup', author)
+	//get all links list
+	$scope.getAllLinkList = function() {
+        $http.get('/index').success(function(allLinkList){
+        	$scope.allLinkList = allLinkList;
+        });
+    };
+	
+	
+	//load on index.jsp authors links
+	$scope.getIndexPage = function() {
+		$http.get('/index').success(function(){
+			$scope.getAllLinkList();
+		});
+	};
+	
+	$scope.getFailurePage = function() {
+		$http.get('/author/failure').success(function(){
+		});
+	};
+	
+	//get autorization page
+	$scope.getAuthorizationPage = function() {
+		$http.get('/author/authorization').success(function(){
+		});
+	};
+	
+	//Author authorization
+	$scope.signInAuthor = function(author) {
 
-		.success(function(operationStatus) {   
-			//if operation status is null get error
-			if(operationStatus===null) {
-				$scope.resetError();
-				$scope.setError('Author sign up is failure.Try again.Because operation status is null.');
-				return;
-			}
-			//if operation status is ok redurect to start page=link page
-			if(operationStatus==='ok'){
-				$scope.author.name = '';
-				$scope.author.surname = '';
-				$scope.author.patronymic = '';
-				$scope.author.email = '';
-				$scope.author.login = '';
-				$scope.author.password = '';
-
-				$rootScope.operationStatus=operationStatus;
-				$location.path("/link");	
-			}
-		})
-
-		.error(function() {
-			$scope.resetError();
-			$scope.setError('Author sign up is failure.Because operation status is empty.');
+		$scope.resetError();
+		$http.post('/author/authorization', author).success(function() {
+			$scope.author.login = '';
+			$scope.author.password = '';
+		}).error(function() {
+			$scope.setError('Author could not authorization.');
 		});
 	};
 
-//	$scope.authorSignIn = function(author) {
+	//get registration page
+	$scope.getRegistrationPage = function() {
+		$http.get('/author/registration').success(function(){
+		});
+	};
+	
+	//Registracion(add) new author
+	$scope.addAuthor=function(author){
 
-//	};
-
-
-	$scope.resetError = function() {
-		$scope.error = false;
-		$scope.errorMessage = '';
+		$scope.resetError(); 
+		$http.post('/author/registration', author).success(function() {
+			$scope.author.name = '';
+			$scope.author.surname = '';
+			$scope.author.patronymic = '';
+			$scope.author.email = '';
+			$scope.author.login = '';
+			$scope.author.password = '';
+		}).error(function() {
+			$scope.setError('Author registration failed.');
+		}); 
 	};
 
-	$scope.setError = function(message) {
-		$scope.error = true;
-		$scope.errorMessage = message;
-		$rootScope.operationStatus='';
+	//get author page and load all author links for add new and update old
+	$scope.getAuthorPage=function(idAuthor){									
+		$http.get('/author/authorpage/' + idAuthor).success(function(authorLinksList,idAuthor){
+			$scope.authorLinksList = authorLinksList;
+			$scope.idAuthor=idAuthor;
+		});
 	};
+
+//	//Update author
+//	$scope.updateAuthor=function(author){
+
+//	$scope.resetError(); 
+//	$http.post('author/update', author).success(function() {
+//	$scope.author.name = '';
+//	$scope.author.surname = '';
+//	$scope.author.patronymic = '';
+//	$scope.author.email = '';
+//	$scope.author.login = '';
+//	$scope.author.password = '';
+//	}).error(function() {
+//	$scope.setError('Author registration failed.');
+//	}); 
+//	};  	
+
+	$scope.editAuthor= function(author) {
+		$scope.resetError();
+		$scope.author = author;
+		$scope.editMode = true;
+	};
+	
+	$scope.resetAuthorsForm = function() {
+        $scope.resetError();
+        $scope.author = {};
+        $scope.editMode = false;
+    };
+
+    $scope.resetError = function() {
+        $scope.error = false;
+        $scope.errorMessage = '';
+    };
+
+    $scope.setError = function(message) {
+        $scope.error = true;
+        $scope.errorMessage = message;
+    };
 };
+

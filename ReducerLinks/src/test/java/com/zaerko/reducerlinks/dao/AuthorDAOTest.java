@@ -204,8 +204,9 @@ public class AuthorDAOTest extends AbstractTest {
 
 		logger.info("Test dao:start test on author operation sign in.");
 		Boolean resaltSignIn =authorDAO.signInByLoginPassword(author.getLogin(), author.getPassword());
-		Assert.assertTrue(resaltSignIn);
-		logger.info("Test dao:test on author operation sign in is finish.");
+		Assert.assertTrue(resaltSignIn);{
+			logger.info("Test dao:test on author operation sign in is finish.");
+		}
 	}
 }
 

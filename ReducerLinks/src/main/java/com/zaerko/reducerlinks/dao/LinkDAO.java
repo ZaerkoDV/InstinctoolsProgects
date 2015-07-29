@@ -13,15 +13,24 @@ package com.zaerko.reducerlinks.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.sql.DataSource;
+
 import org.hibernate.ObjectNotFoundException;
+import org.hibernate.Session;
+import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate4.HibernateObjectRetrievalFailureException;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.zaerko.reducerlinks.model.Author;
 import com.zaerko.reducerlinks.model.Link;
+import com.zaerko.reducerlinks.service.IAuthorService;
+import com.zaerko.reducerlinks.service.ILinkService;
 
 /**
  * <p>The class LinkDAO use DAO pattern which describes layer of data access to
@@ -54,7 +63,7 @@ public class LinkDAO extends HibernateDaoSupport implements ILinkDAO {
 	 * @param LinkDAO
 	 */
 	private static final Logger logger = LoggerFactory.getLogger(LinkDAO.class);
-
+	
 	/**
 	 * Return link by id if link exist in data base with specify id
 	 * else null.Parameter idAuthor is attribute of the Author.It is
@@ -65,7 +74,6 @@ public class LinkDAO extends HibernateDaoSupport implements ILinkDAO {
 	 * @return Author or null.
 	 * @throw HibernateObjectRetrievalFailureException
 	 */
-	@Override
 	public Link getLinkById(Long idLink) {
 
 		try{
@@ -90,7 +98,6 @@ public class LinkDAO extends HibernateDaoSupport implements ILinkDAO {
 	 * @param link
 	 * @throw HibernateObjectRetrievalFailureException 
 	 */
-	@Override
 	public void addLink(Link link) {
 
 		try{
@@ -110,7 +117,6 @@ public class LinkDAO extends HibernateDaoSupport implements ILinkDAO {
 	 * @param link
 	 * @throw HibernateObjectRetrievalFailureException 
 	 */
-	@Override
 	public void updateLink(Link link){
 
 		try{
@@ -130,7 +136,6 @@ public class LinkDAO extends HibernateDaoSupport implements ILinkDAO {
 	 * @param link
 	 * @throw HibernateObjectRetrievalFailureException 
 	 */
-	@Override
 	public void removeLink(Long idLink) {
 
 		try{
@@ -153,35 +158,66 @@ public class LinkDAO extends HibernateDaoSupport implements ILinkDAO {
 	 * @throw  DataAccessException
 	 * @return List
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public List<Link> getLinkListByTag(String urlTag){ 
 
 		String query;
 		List<Link> listLinkByTag = null;
 
-		//		try{
-		query="SELECT l FROM Link l WHERE l.urlTag = ?";
-		listLinkByTag = (List<Link>) this.getHibernateTemplate().find(query,urlTag);
+		try{
+			query="SELECT l FROM Link l WHERE l.urlTag = ?";
+			listLinkByTag = (List<Link>) this.getHibernateTemplate().find(query,urlTag);
 
-		//		}catch(final DataAccessException e){
-		//			logger.info("DAO:Link not delete, because error "+e);
-		//		}
+		}catch(final DataAccessException e){
+			logger.info("DAO:Links not loaded, because error "+e);
+		}
 
 
-		//		if(listLinkByTag.isEmpty()){
-		//			logger.info("DAO:No links with the specified tag.");
-		//
-		//		}else{
-		//			logger.info("DAO:List of links with the specified tag is no empty.");
-		//
-		//			for(Link link : listLinkByTag){
-		//				logger.info("DAO:List of links with the specified tag= "+link);
-		//			}
-		//		}
+		if(listLinkByTag.isEmpty()){
+			logger.info("DAO:No links with the specified tag.");
+
+		}else{
+			logger.info("DAO:List of links with the specified tag is no empty.");
+
+			for(Link link : listLinkByTag){
+				logger.info("DAO:List of links with the specified tag= "+link);
+			}
+		}
 		return listLinkByTag;
 	}
+	
+	/**
+	 * Method return list of link if link exist in data base 
+	 * else return empty list. 
+	 *  
+	 * @throw  DataAccessException
+	 * @return List
+	 */
+	public List<Link> getAllLink(){ 
+		
+		String query;
+		List<Link> linkList = null;
+		try{
+			query="SELECT l FROM Link l";
+			linkList = (List<Link>) this.getHibernateTemplate().find(query);
+		}catch(final DataAccessException e){
+			logger.info("DAO:Link not loaded, because error "+e);
+		}
+		
+		if(linkList.isEmpty()){
+			logger.info("DAO:No links.");
 
+		}else{
+			logger.info("DAO:List of links is no empty.");
+
+			for(Link link : linkList){
+				logger.info("DAO:List of links = "+link);
+			}
+		}
+		return linkList;
+	}
+	
+	
 	/**
 	 * Method return list of links by author ligin if author ligin exist
 	 * in data base else return empty list. Method formation list of links
@@ -192,7 +228,6 @@ public class LinkDAO extends HibernateDaoSupport implements ILinkDAO {
 	 * @throw DataAccessException
 	 * @return List
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public List<Link> getLinkListByLogin(String login){
 

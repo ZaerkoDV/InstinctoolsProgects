@@ -248,15 +248,15 @@ public class AuthorServiceTest extends AbstractTest{
 	@Transactional
 	@Rollback(true)
 	@Test
-	public void testCheckMailAddres(){
+	public void testCheckEmailAddres(){
 		
 		//expect true
 		String testEmail="author@mail.ru";
-		Assert.assertTrue(authorService.isMailAddres(testEmail));
+		Assert.assertTrue(authorService.isEmailAddres(testEmail));
 		
 		//expect false
 		testEmail="authormail.ru";
-		Assert.assertFalse(authorService.isMailAddres(testEmail));
+		Assert.assertFalse(authorService.isEmailAddres(testEmail));
 	}
 	
 }

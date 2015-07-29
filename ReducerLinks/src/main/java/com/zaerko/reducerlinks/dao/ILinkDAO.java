@@ -76,7 +76,16 @@ public interface ILinkDAO {
 	 * @return List
 	 */
 	public List<Link> getLinkListByTag(String tag);
-
+	
+	/**
+	 * Method return list of link if link exist in data base 
+	 * else return empty list. 
+	 *  
+	 * @throw  DataAccessException
+	 * @return List
+	 */
+	public List<Link> getAllLink();
+	
 	/**
 	 * Method return list of links by author ligin if author ligin exist
 	 * in data base else return empty list. Method formation list of links

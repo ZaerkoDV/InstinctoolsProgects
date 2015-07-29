@@ -188,7 +188,19 @@ public class LinkService implements ILinkService {
 			throw new NullPointerException("Service:List of links by url tag not download");
 		}
 	}
+	
+	/**
+	 * Method return list of link if link exist in data base 
+	 * else return empty list. 
+	 *  
+	 * @return List
+	 */
+	public List<Link> getAllLink(){ 
 
+		logger.info("Service:List of links loaded.");
+		return linkDAO.getAllLink();
+	}
+	
 	/**
 	 * Method return list of links by author ligin if author ligin exist
 	 * in data base else return empty list. Method formation list of links

@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -50,7 +51,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Author {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_genn")
 	@SequenceGenerator(name = "seq_genn", sequenceName = "basic.id_author_seq", initialValue=1, allocationSize=1)
 	@Column(name="id_author",columnDefinition="integer",unique=true, nullable = false)
@@ -87,7 +87,7 @@ public class Author {
 	/**
 	 * Connect author with his links.
 	 */
-	@OneToMany(targetEntity=Link.class, mappedBy="author", fetch = FetchType.LAZY)
+	@OneToMany(targetEntity=Link.class, mappedBy="author")//, fetch = FetchType.LAZY
 	private List<Link> link;
 
 	/**

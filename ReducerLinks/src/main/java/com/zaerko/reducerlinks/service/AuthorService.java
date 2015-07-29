@@ -285,7 +285,7 @@ public class AuthorService implements IAuthorService{
 	 * @param email
 	 * @return Boolean
 	 */
-	public Boolean isMailAddres(String email){
+	public Boolean isEmailAddres(String email){
 		pattern = Pattern.compile(email_pattern);
 		matcher = pattern.matcher(email);
 		return matcher.matches();

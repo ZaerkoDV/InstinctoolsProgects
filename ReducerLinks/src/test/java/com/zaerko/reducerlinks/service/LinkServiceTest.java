@@ -28,7 +28,7 @@ import com.zaerko.reducerlinks.model.Link;
  * @author Zaerko_DV
  *
  */
-public class LinkServiceTest extends AbstractTest{
+public class LinkServiceTest{// extends AbstractTest{
 
 	/**
 	 * Annatation Inject use to get injection of AuthorService and LinkService
@@ -83,120 +83,138 @@ public class LinkServiceTest extends AbstractTest{
 		
 		return link;
 	}
+//	
+//	/**
+//	 * Method testCRUDLink are testing set of CRUD operations. 
+//	 * 
+//	 * @see org.springframework.transaction.annotation.Transactional
+//	 * @see org.springframework.test.annotation.Rollback
+//	 * @see org.junit.Test
+//	 */
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testCRUDLink(){
+//
+//		// check new link by ID
+//		Assert.assertNotNull(linkService.getLinkById(link.getIdLink()));
+//
+//		//update field of object link.
+//		final String updateFullURL= "http://testFullURL2";
+//		link.setLinkFullURL(updateFullURL);
+//		linkService.updateLink(link);
+//
+//		// check if link was changed return true
+//		final Link updatedLink =linkService.getLinkById(link.getIdLink());	
+//		Assert.assertTrue(updatedLink.getLinkFullURL().equals(updateFullURL));
+//
+//		//remove link
+//		linkService.removeLink(updatedLink.getIdLink());
+//		Assert.assertNull(linkService.getLinkById(link.getIdLink()));
+//	}
+//	
+//	/**
+//	 * Method testGetingLinkListByTag are testing operation of creating
+//	 * a list links by tag. That method initiating to create new test object
+//	 * for test.
+//	 * 
+//	 * @see org.springframework.transaction.annotation.Transactional
+//	 * @see org.springframework.test.annotation.Rollback
+//	 * @see org.junit.Test
+//	 */
+//	@Transactional
+//	@Rollback(false)
+//	@Test
+//	public void testGetingLinkListByTag(){
+//			
+//		List<Link> testlinkListByTag = linkService.getLinkListByTag(link.getUrlTag());
+//		Assert.assertFalse(testlinkListByTag.isEmpty());
+//	}
+//	
 	
-	/**
-	 * Method testCRUDLink are testing set of CRUD operations. 
-	 * 
-	 * @see org.springframework.transaction.annotation.Transactional
-	 * @see org.springframework.test.annotation.Rollback
-	 * @see org.junit.Test
-	 */
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testCRUDLink(){
-
-		// check new link by ID
-		Assert.assertNotNull(linkService.getLinkById(link.getIdLink()));
-
-		//update field of object link.
-		final String updateFullURL= "http://testFullURL2";
-		link.setLinkFullURL(updateFullURL);
-		linkService.updateLink(link);
-
-		// check if link was changed return true
-		final Link updatedLink =linkService.getLinkById(link.getIdLink());	
-		Assert.assertTrue(updatedLink.getLinkFullURL().equals(updateFullURL));
-
-		//remove link
-		linkService.removeLink(updatedLink.getIdLink());
-		Assert.assertNull(linkService.getLinkById(link.getIdLink()));
-	}
+//	/**
+//	 * Method testGetingAllLinkList are testing operation of perform link list.This
+//	 * list contain all link. That method initiating to create new test object for test.
+//	 * 
+//	 * @see org.springframework.transaction.annotation.Transactional
+//	 * @see org.springframework.test.annotation.Rollback
+//	 * @see org.junit.Test
+//	 */
+//	@Transactional
+//	@Rollback(false)
+//	@Test
+//	public void testGetingAllLinkList(){
+//			
+//		List<Link> testlinkList = linkService.getAllLink();
+//		Assert.assertFalse(testlinkList.isEmpty());
+//	}
 	
-	/**
-	 * Method testGetingLinkListByTag are testing operation of creating
-	 * a list links by tag. That method initiating to create new test object
-	 * for test.
-	 * 
-	 * @see org.springframework.transaction.annotation.Transactional
-	 * @see org.springframework.test.annotation.Rollback
-	 * @see org.junit.Test
-	 */
-	@Transactional
-	@Rollback(false)
-	@Test
-	public void testGetingLinkListByTag(){
-			
-		List<Link> testlinkListByTag = linkService.getLinkListByTag(link.getUrlTag());
-		Assert.assertFalse(testlinkListByTag.isEmpty());
-	}
-	
-	/**
-	 * Method testGetingLinkListByLogin are testing operation of creating
-	 * a list links by author login. That method initiating to create new
-	 * test object for test.
-	 * 
-	 * @see org.springframework.transaction.annotation.Transactional
-	 * @see org.springframework.test.annotation.Rollback
-	 * @see org.junit.Test
-	 */
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testGetingLinkListByLogin() {
-
-		List<Link> listLinkByLogin = linkService.getLinkListByLogin(link.getAuthor().getLogin());
-		Assert.assertFalse(listLinkByLogin.isEmpty());
-	}
-
-	/**
-	 * Method testIncreaseNumberLinkVisits are testing operation of computing
-	 * sum visits on link. That method initiating to create new test object
-	 * for test.
-	 * 
-	 * @see org.springframework.transaction.annotation.Transactional
-	 * @see org.springframework.test.annotation.Rollback
-	 * @see org.junit.Test
-	 */
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testIncreaseNumberLinkVisits() {
-		
-		//check actual and expected values
-		Long expected=(long)0;
-		//new link and actual value is 0
-		Long actual=linkService.increaseNumberLinkVisits(link.getIdLink());
-		Assert.assertEquals(expected, actual);
-		
-		//update actual value now value is 1
-		link.setSumClick((long)1);
-		linkService.updateLink(link);
-		
-		//check actual and expected values after update
-		expected=(long)1;
-		actual=linkService.increaseNumberLinkVisits(link.getIdLink());
-		Assert.assertEquals(expected, actual);
-	}
-	
-	/**
-	 * Method testCheckUrlAddress are testing string on conformity url.
-	 * If url is matches the pattern method return true else false.
-	 * 
-	 * @see org.springframework.transaction.annotation.Transactional
-	 * @see org.springframework.test.annotation.Rollback
-	 * @see org.junit.Test
-	 */
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testCheckUrlAddress() {
-		//expect
-		Boolean testTrueUrl = linkService.isUrlAddress("http://stackoverflow.com/questions/2230676");
-		Boolean testFalseUrl=linkService.isUrlAddress("ht:/");
-		Assert.assertTrue(testTrueUrl);
-		Assert.assertFalse(testFalseUrl);
-		
-	}
+//	/**
+//	 * Method testGetingLinkListByLogin are testing operation of creating
+//	 * a list links by author login. That method initiating to create new
+//	 * test object for test.
+//	 * 
+//	 * @see org.springframework.transaction.annotation.Transactional
+//	 * @see org.springframework.test.annotation.Rollback
+//	 * @see org.junit.Test
+//	 */
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testGetingLinkListByLogin() {
+//
+//		List<Link> listLinkByLogin = linkService.getLinkListByLogin(link.getAuthor().getLogin());
+//		Assert.assertFalse(listLinkByLogin.isEmpty());
+//	}
+//
+//	/**
+//	 * Method testIncreaseNumberLinkVisits are testing operation of computing
+//	 * sum visits on link. That method initiating to create new test object
+//	 * for test.
+//	 * 
+//	 * @see org.springframework.transaction.annotation.Transactional
+//	 * @see org.springframework.test.annotation.Rollback
+//	 * @see org.junit.Test
+//	 */
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testIncreaseNumberLinkVisits() {
+//		
+//		//check actual and expected values
+//		Long expected=(long)0;
+//		//new link and actual value is 0
+//		Long actual=linkService.increaseNumberLinkVisits(link.getIdLink());
+//		Assert.assertEquals(expected, actual);
+//		
+//		//update actual value now value is 1
+//		link.setSumClick((long)1);
+//		linkService.updateLink(link);
+//		
+//		//check actual and expected values after update
+//		expected=(long)1;
+//		actual=linkService.increaseNumberLinkVisits(link.getIdLink());
+//		Assert.assertEquals(expected, actual);
+//	}
+//	
+//	/**
+//	 * Method testCheckUrlAddress are testing string on conformity url.
+//	 * If url is matches the pattern method return true else false.
+//	 * 
+//	 * @see org.springframework.transaction.annotation.Transactional
+//	 * @see org.springframework.test.annotation.Rollback
+//	 * @see org.junit.Test
+//	 */
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testCheckUrlAddress() {
+//		//expect
+//		Boolean testTrueUrl = linkService.isUrlAddress("http://stackoverflow.com/questions/2230676");
+//		Boolean testFalseUrl=linkService.isUrlAddress("ht:/");
+//		Assert.assertTrue(testTrueUrl);
+//		Assert.assertFalse(testFalseUrl);
+//		
+//	}
 	
 }
