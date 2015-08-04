@@ -91,9 +91,8 @@ public class AuthorDAOTest extends AbstractTest {
 	}
 
 	/**
-	 * Method testCRUDAuthor are testing set of CRUD operations.That method
-	 * use test object, which create before test run and destroy test object
-	 * after method is finish. 
+	 * Method testSaveAuthor are testing save operation.That method use test object,
+	 * which create before test run and destroy test object after method is finish. 
 	 * 
 	 * @see org.springframework.transaction.annotation.Transactional
 	 * @see org.springframework.test.annotation.Rollback
@@ -102,27 +101,68 @@ public class AuthorDAOTest extends AbstractTest {
 	@Transactional
 	@Rollback(true)
 	@Test
-	public void testCRUDAuthor() {
+	public void testSaveAuthor(){
+		logger.info("Test dao: test on save new author.");
+		Assert.assertFalse(author.equals(null));
+	}
 
-		logger.info("Test dao:start test on CRUD operation with test object(author).");
-		// check new client by ID
+	/**
+	 * Method testGettingAuthorById are testing operation get author by his id.That method
+	 * use test object,which create before test run and destroy test object after 
+	 * method is finish.  
+	 * 
+	 * @see org.springframework.transaction.annotation.Transactional
+	 * @see org.springframework.test.annotation.Rollback
+	 * @see org.junit.Test
+	 */
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testGettingAuthorById(){
+		logger.info("Test dao: test on operation get author by id.");
 		Assert.assertNotNull(authorDAO.getAuthorById(author.getIdAuthor()));
+	}
 
-		// update author email
+	/**
+	 * Method testUpdateAuthor are testing update author. That method use test object,
+	 * which create before test run and destroy test object after method is finish.  
+	 * 
+	 * @see org.springframework.transaction.annotation.Transactional
+	 * @see org.springframework.test.annotation.Rollback
+	 * @see org.junit.Test
+	 */
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testUpdateAuthor(){
+		
+		logger.info("Test dao: test on update author.");
 		final String newEmail = "author2@test.com";
 		author.setEmail(newEmail);
 		authorDAO.updateAuthor(author);
 
-		// check if email was changed return true
-		final Author updatedAuthor = authorDAO.getAuthorById(author.getIdAuthor());
-		Assert.assertTrue(updatedAuthor.getEmail().equals(newEmail));		
-
-		// remove author
-		authorDAO.removeAuthor(updatedAuthor.getIdAuthor());
-		Assert.assertNull(authorDAO.getAuthorById(author.getIdAuthor()));
-		logger.info("Test dao: test on CRUD operation with test object(author) is finish.");
+		final Author updatedAuthor =authorDAO.getAuthorById(author.getIdAuthor());	
+		Assert.assertTrue(updatedAuthor.getEmail().equals(newEmail));
 	}
 
+	/**
+	 * Method testRemoveAuthor are testing operation delete author by id. That method
+	 * use test object, which create before test run and destroy test object after
+	 * method is finish.   
+	 * 
+	 * @see org.springframework.transaction.annotation.Transactional
+	 * @see org.springframework.test.annotation.Rollback
+	 * @see org.junit.Test
+	 */	
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testRemoveAuthor(){
+		logger.info("Test dao: test on delete author by id.");
+		authorDAO.removeAuthor(author.getIdAuthor());
+		Assert.assertNull(authorDAO.getAuthorById(author.getIdAuthor()));
+	}
+	
 	/**
 	 * Method testGetingIdAuthorByLoginPassword are testing operation which
 	 * must return id author by login and password if author exist in data base

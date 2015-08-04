@@ -12,6 +12,10 @@
 package com.zaerko.reducerlinks.dao;
 
 import java.util.List;
+
+import javax.transaction.TransactionManager;
+
+import org.hibernate.Criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -64,6 +68,7 @@ public class AuthorDAO extends HibernateDaoSupport implements IAuthorDAO {
 	 */
 	public Author getAuthorById(Long idAuthor) {
 
+		
 		try{
 			logger.info("DAO:Author loaded in dao, id=" + idAuthor);
 			return this.getHibernateTemplate().load(Author.class,idAuthor);

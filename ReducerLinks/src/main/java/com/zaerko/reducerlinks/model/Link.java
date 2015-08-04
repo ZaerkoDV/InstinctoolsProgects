@@ -26,6 +26,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 /**
  * 
@@ -61,6 +62,7 @@ public class Link {
 	private String linkNote;
 
 	@NotEmpty
+	@URL
 	@Column(name="link_full_url", columnDefinition="text", nullable=false)
 	private String linkFullURL;
 

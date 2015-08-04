@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -71,6 +72,7 @@ public class Author {
 	private String patronymic;
 
 	@NotEmpty
+	@Email
 	@Column(name="e_mail",columnDefinition="text", nullable=false)
 	private String email;
 
