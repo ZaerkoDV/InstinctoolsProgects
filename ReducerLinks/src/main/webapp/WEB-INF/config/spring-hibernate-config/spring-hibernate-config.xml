@@ -30,17 +30,11 @@
 	
 
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"	destroy-method="close">
-		<!--<beans:property name="defaultAutoCommit" value="true"/> -->
 		<beans:property name="driverClassName" value="org.postgresql.Driver" />
-		<beans:property name="url" value="jdbc:postregsql://localhost:5432/reducer_links" />
+		<beans:property name="url" value="jdbc:postgresql://localhost:5432/reducer_links" />
 		<beans:property name="username" value="postgres" />
 		<beans:property name="password" value="admin" />
-		<beans:property name="maxActive" value="20"/>
-		<beans:property name="maxIdle" value="10"/>
-		<beans:property name="maxWait" value="-1"/>
 	</beans:bean>
-
-
 
 	<beans:bean id="hibernate4AnnotatedSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
@@ -60,21 +54,21 @@
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 				<beans:prop key="hibernate.format_sql">true</beans:prop>
 				<beans:prop key="connection.pool_size">1</beans:prop>
-				<!--<beans:prop key="hibernate.id.new_generator_mappings">true</beans:prop>-->
+				<beans:prop key="hibernate.id.new_generator_mappings">true</beans:prop>
 				<beans:prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</beans:prop>
 				<!--<beans:prop  key="hibernate.hbm2ddl.auto">create-drop</beans:prop>-->
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-<!-- 
-	<beans:bean id="authorDAO" class="com.zaerko.reducerlinks.dao.AuthorDAO">
+
+	<beans:bean id="commonEntityDAO" class="com.instinctools.reducerlinks.dao.impl.CommonEntityDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
- 
-	<beans:bean id="authorService" class="com.zaerko.reducerlinks.service.AuthorService">
-		<beans:property name="authorDAO" ref="authorDAO"></beans:property>
+	
+	<beans:bean id="testObjectCreator" class="com.instinctools.reducerlinks.TestObjectCreator">
+		<beans:property name="commonEntityDAO" ref="commonEntityDAO"/>
 	</beans:bean>
--->
+
 	<context:annotation-config/>
 	<context:component-scan base-package="com.instinctools.reducerlinks">
 		<context:include-filter type="regex" expression="com.instinctools.reducerlinks.dao.*"/>
