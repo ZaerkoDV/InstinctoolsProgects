@@ -7,6 +7,5 @@ package com.instinctools.reducerlinks.dao;
  * @author Zaerko_DV
  *
  */
-public interface UserDAO extends CommonEntityDAO{
-
+public interface LinkHistoryDAO extends CommonEntityDAO {
 }

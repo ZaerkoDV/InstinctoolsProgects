@@ -65,9 +65,30 @@
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 	
+	<beans:bean id="userDAO" class="com.instinctools.reducerlinks.dao.impl.UserDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="userCorespondenceDAO" class="com.instinctools.reducerlinks.dao.impl.UserCorespondenceDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="userSecurityDAO" class="com.instinctools.reducerlinks.dao.impl.UserSecurityDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+
+	<beans:bean id="linkDAO" class="com.instinctools.reducerlinks.dao.impl.LinkDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="linkHistoryDAO" class="com.instinctools.reducerlinks.dao.impl.LinkHistoryDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
 	<beans:bean id="testObjectCreator" class="com.instinctools.reducerlinks.TestObjectCreator">
 		<beans:property name="commonEntityDAO" ref="commonEntityDAO"/>
 	</beans:bean>
+
 
 	<context:annotation-config/>
 	<context:component-scan base-package="com.instinctools.reducerlinks">

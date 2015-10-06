@@ -3,6 +3,8 @@
  */
 package com.instinctools.reducerlinks.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Assert;
@@ -50,12 +52,12 @@ public class CommonEntityDAOTest extends TestStarter {
 	}
 	
 //	@After 
-//	public void clearObjectsForTest(){
+//	public void clearObjectsAfterTest(){
 //		testObjectCreator.deleteUserAfterTest(user.getIdUser());
 //	}
 	
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testSaveEntity(){
 		
@@ -63,7 +65,7 @@ public class CommonEntityDAOTest extends TestStarter {
 	}
 
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testGettingEntityById(){
 		Object entity=commonEntityDAO.getEntityById(User.class, user.getIdUser());
@@ -71,7 +73,7 @@ public class CommonEntityDAOTest extends TestStarter {
 	}
 
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testUpdateEntity(){
 
@@ -83,7 +85,7 @@ public class CommonEntityDAOTest extends TestStarter {
 	}
 
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testDeleteEntityById(){
 		commonEntityDAO.deleteEntityById(User.class, user.getIdUser());
@@ -92,7 +94,7 @@ public class CommonEntityDAOTest extends TestStarter {
 	
 	
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testDeleteEntity(){
 		commonEntityDAO.deleteEntity(user);
@@ -100,12 +102,11 @@ public class CommonEntityDAOTest extends TestStarter {
 	}
 	
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testGettingAllEntity(){
-		commonEntityDAO.deleteEntity(user);
-		Assert.assertFalse(commonEntityDAO.getAllEntity(User.class).isEmpty());
+		List<User> list = (List)commonEntityDAO.getAllEntity(User.class);
+		
+		Assert.assertFalse(list.isEmpty());
 	}
-	
-	
 }
