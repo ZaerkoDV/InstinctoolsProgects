@@ -96,7 +96,7 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		return list;
 	}
 	
-	public Long increaseNumberLinkVisits(Long idLink) {
+	public Long increaseNumberLinkVisits(Long idLink){
 
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(LinkHistory.class);
@@ -119,7 +119,7 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		return sumClick;
 	}
 	
-	public Long getNumberLinkVisits(Long idLink) {
+	public Long getNumberLinkVisits(Long idLink){
 
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(LinkHistory.class);

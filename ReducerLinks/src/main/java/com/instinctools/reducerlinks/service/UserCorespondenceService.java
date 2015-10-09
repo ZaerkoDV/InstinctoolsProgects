@@ -9,4 +9,6 @@ package com.instinctools.reducerlinks.service;
  */
 public interface UserCorespondenceService extends CommonEntityService {
 
+	public Boolean isUniqueEmail(String email);
+	public Boolean isValidEmail(String email);
 }

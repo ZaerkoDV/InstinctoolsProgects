@@ -89,7 +89,4 @@ public class CommonEntityDAOImpl extends HibernateDaoSupport implements CommonEn
 			return Collections.emptyList();
 		}
 	}
-	
-	
-	
 }

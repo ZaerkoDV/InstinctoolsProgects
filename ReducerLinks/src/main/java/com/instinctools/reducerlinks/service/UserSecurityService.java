@@ -9,4 +9,5 @@ package com.instinctools.reducerlinks.service;
  */
 public interface UserSecurityService extends CommonEntityService {
 
+	public Boolean isUniqueLoginPassword(String login, String password);
 }
