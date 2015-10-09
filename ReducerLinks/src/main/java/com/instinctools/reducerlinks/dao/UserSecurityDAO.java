@@ -8,4 +8,5 @@ package com.instinctools.reducerlinks.dao;
  *
  */
 public interface UserSecurityDAO extends CommonEntityDAO {
+	public Boolean isUniqueLoginPassword(String login, String password);
 }

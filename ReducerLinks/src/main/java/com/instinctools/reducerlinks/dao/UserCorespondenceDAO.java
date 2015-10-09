@@ -9,4 +9,5 @@ package com.instinctools.reducerlinks.dao;
  */
 public interface UserCorespondenceDAO extends CommonEntityDAO {
 
+	public Boolean isUniqueEmail(String email);
 }

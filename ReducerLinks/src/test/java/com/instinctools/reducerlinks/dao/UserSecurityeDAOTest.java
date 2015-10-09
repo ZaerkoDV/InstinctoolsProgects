@@ -26,92 +26,104 @@ import com.instinctools.reducerlinks.model.UserSecurity;
  * @author Zaerko_DV
  *
  */
-public class UserSecurityeDAOTest extends TestStarter {
+public class UserSecurityeDAOTest {//extends TestStarter {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserSecurityeDAOTest.class);
-	
-	@Inject
-	@Qualifier("userSecurityDAO")
-	private UserSecurityDAO userSecurityDAO;
-
-	@Inject
-	@Qualifier("testObjectCreator")								
-	private TestObjectCreator testObjectCreator;
-
-	public void setUserSecurityDAO(UserSecurityDAO userSecurityDAO) {
-		this.userSecurityDAO = userSecurityDAO;
-	}
-
-	public void setTestObjectCreator(TestObjectCreator testObjectCreator) {
-		this.testObjectCreator = testObjectCreator;
-	}
-	
-	public UserSecurity userSecurity;
-	
-	@Before
-	public void initObjectsBeforeTest(){
-		this.userSecurity=testObjectCreator.createUserSecurity();
-	}
-	
-//	@After
-//	public void clearObjectsAfterTest(){
-//		testObjectCreator.deleteUserSecurityAfterTest(userSecurity.getIdUserSecurity());
+//	private static final Logger logger = LoggerFactory.getLogger(UserSecurityeDAOTest.class);
+//	
+//	@Inject
+//	@Qualifier("userSecurityDAO")
+//	private UserSecurityDAO userSecurityDAO;
+//
+//	@Inject
+//	@Qualifier("testObjectCreator")								
+//	private TestObjectCreator testObjectCreator;
+//
+//	public void setUserSecurityDAO(UserSecurityDAO userSecurityDAO) {
+//		this.userSecurityDAO = userSecurityDAO;
 //	}
-
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testSaveUserSecurity(){
-		
-		Assert.assertNotNull(userSecurityDAO
-				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
-	}
-
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testGettingUserSecurityById(){
-		Object entity=userSecurityDAO
-				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
-		Assert.assertNotNull(entity);
-	}
-
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testUpdateUserSecurity(){
-
-		userSecurity.setRole("admin");
-		userSecurityDAO.updateEntity(userSecurity);
-		final UserSecurity updatedUserSecurity =(UserSecurity) userSecurityDAO.
-				getEntityById(UserSecurity.class,userSecurity.getIdUserSecurity());	
-		Assert.assertTrue(updatedUserSecurity.getRole().equals("admin"));
-	}
-
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testDeleteUserSecurityById(){
-		userSecurityDAO.deleteEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
-		Assert.assertNull(userSecurityDAO
-				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
-	}
-	
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testDeleteUserSecurity(){
-		userSecurityDAO.deleteEntity(userSecurity);
-		Assert.assertNull(userSecurityDAO
-				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testGettingAllUserSecurity(){
-		List<UserSecurity> list = (List)userSecurityDAO.getAllEntity(UserSecurity.class);
-		Assert.assertFalse(list.isEmpty());
-	}
+//
+//	public void setTestObjectCreator(TestObjectCreator testObjectCreator) {
+//		this.testObjectCreator = testObjectCreator;
+//	}
+//	
+//	public UserSecurity userSecurity;
+//	
+//	@Before
+//	public void initObjectsBeforeTest(){
+//		this.userSecurity=testObjectCreator.createUserSecurity();
+//	}
+//
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testSaveUserSecurity(){
+//		
+//		Assert.assertNotNull(userSecurityDAO
+//				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
+//	}
+//
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testGettingUserSecurityById(){
+//		Object entity=userSecurityDAO
+//				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
+//		Assert.assertNotNull(entity);
+//	}
+//
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testUpdateUserSecurity(){
+//
+//		userSecurity.setRole("admin");
+//		userSecurityDAO.updateEntity(userSecurity);
+//		final UserSecurity updatedUserSecurity =(UserSecurity) userSecurityDAO.
+//				getEntityById(UserSecurity.class,userSecurity.getIdUserSecurity());	
+//		Assert.assertTrue(updatedUserSecurity.getRole().equals("admin"));
+//	}
+//
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testDeleteUserSecurityById(){
+//		userSecurityDAO.deleteEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
+//		Assert.assertNull(userSecurityDAO
+//				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
+//	}
+//	
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testDeleteUserSecurity(){
+//		userSecurityDAO.deleteEntity(userSecurity);
+//		Assert.assertNull(userSecurityDAO
+//				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
+//	}
+//	
+//	@SuppressWarnings("unchecked")
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testGettingAllUserSecurity(){
+//		List<UserSecurity> list = (List)userSecurityDAO.getAllEntity(UserSecurity.class);
+//		Assert.assertFalse(list.isEmpty());
+//	}
+//	
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testOnUniqueLoginPassword(){
+//		
+//		Boolean isUnique;
+//		String login=userSecurity.getLogin();
+//		String password=userSecurity.getPassword();
+//		isUnique=userSecurityDAO.isUniqueLoginPassword(login,password);
+//		Assert.assertFalse(isUnique);
+//		
+//		login="falseLogin";
+//		password="falsePassword";
+//		isUnique=userSecurityDAO.isUniqueLoginPassword(login,password);
+//		Assert.assertTrue(isUnique);
+//	}	
 }

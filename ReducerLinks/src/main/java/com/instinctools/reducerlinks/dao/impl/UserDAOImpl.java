@@ -29,17 +29,15 @@ import com.instinctools.reducerlinks.model.UserSecurity;
 public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
-	
-	
-	
+
 	@Transactional
 	public User getUserByEmail(String email){
-		
+
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(UserCorespondence.class);
 		criteria.setProjection(Projections.property("user"));
 		criteria.add(Restrictions.eq("email", email));
-		
+
 		User user = null;
 		try {
 			user=(User)criteria.uniqueResult();
@@ -48,7 +46,7 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		}
 		return user;
 	}
-	
+
 	@Transactional
 	public Long getIdUserByLoginPassword(String login,String password){
 
@@ -67,14 +65,14 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		}
 		return idUser;
 	}
-	
+
 	@Transactional
 	public User getUserByLoginPassword(String login,String password){
 
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(UserSecurity.class);
 		criteria.setProjection(Projections.property("user"));
-		
+
 		criteria.add(Restrictions.eq("login", login));
 		criteria.add(Restrictions.eq("password", password));
 
@@ -86,7 +84,7 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		}
 		return user;
 	}
-	
+
 	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<User> getListUserByLastName(String lastName){
@@ -96,7 +94,7 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		criteria.add(Restrictions.eq("lastName", lastName));
 		criteria.setMaxResults(20);
 		criteria.setFirstResult(0);
-		
+
 		List<User> list;
 		try {
 			list= (List<User>)criteria.list();
@@ -105,81 +103,80 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		}
 		return list;
 	}
-	
+
 	@Transactional
 	public Boolean signInUserByLoginPassword(String login, String password){
-	
-		Boolean signIn = false;
+
 		User user=null;
+		Boolean signIn = null;
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(UserSecurity.class);
 		criteria.setProjection(Projections.property("user"));
-		
+
 		criteria.add(Restrictions.eq("login", login));
 		criteria.add(Restrictions.eq("password", password));
-		
+
 		try {
-			user = (User)criteria.uniqueResult();
-			signIn=true;	
-			
+			user=(User) criteria.uniqueResult();
+			logger.info("User "+user.getFirstName()+" sign in in system");
+			signIn=true;
 		}catch (NullPointerException e) {
 			signIn=false;
 		}
 		return signIn;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Link> getUserLinksSortByRecency(Long idUser){
-		
+
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(LinkHistory.class);
 		criteria.setProjection(Projections.property("link"));
 		
 		criteria.createAlias("link", "l");
-		criteria.createAlias("user", "u");
-		criteria.add(Restrictions.eq("l.u.idUser", idUser));
-		//criteria.add(Restrictions.eq("l.user.idUser", idUser));
-		
+		criteria.createAlias("l.user", "u");
+		criteria.add(Restrictions.eq("u.idUser", idUser));
+
 		criteria.addOrder(Order.desc("lastCreate"));
 		criteria.setMaxResults(20);
 		criteria.setFirstResult(0);
-		
+
 		List<Link> list = null;
 		try {
 			list=(List<Link>)criteria.list();
-			
+
 		}catch (NullPointerException e){
 			list = Collections.emptyList();
 		}
 		return list;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<UserCorespondence> getListUserCorespondences(Long idUser){
-		
+
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(UserCorespondence.class);
-		
+
 		criteria.createAlias("user", "u");
 		criteria.add(Restrictions.eq("u.idUser", idUser));
-		
+
 		criteria.setMaxResults(20);
 		criteria.setFirstResult(0);
-		
+
 		List<UserCorespondence> list=null;
 		try {
 			list=(List<UserCorespondence>)criteria.list();
 		}catch (NullPointerException e){
 			list = Collections.emptyList();
 		}
-		return null;
+		return list;
 	}
-	
+
 	@Transactional
 	public int getCountOfUser(){
-		
+
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(User.class);	
 		int count;	
@@ -190,5 +187,5 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		}
 		return count;
 	}
-	
+
 }

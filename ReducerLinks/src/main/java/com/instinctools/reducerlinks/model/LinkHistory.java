@@ -38,6 +38,9 @@ public class LinkHistory {
 	@Column(name="ip_address")
 	private String ipAddress;
 	
+	@Column(name="sum_click", columnDefinition="bigint default '0'")
+	private Long sumClick;
+	
 	@OneToOne
 	@JoinColumn(name="link_id")
 	private Link link;
@@ -45,10 +48,11 @@ public class LinkHistory {
 	public LinkHistory(){
 	}
 	
-	public LinkHistory(Long idLinkHistory,Date lastCreate,String ipAddress, Link link){
+	public LinkHistory(Long idLinkHistory,Date lastCreate,String ipAddress,Long sumClick, Link link){
 		this.idLinkHistory=idLinkHistory;
-		this.lastCreate=lastCreate;
 		this.ipAddress=ipAddress;
+		this.lastCreate=lastCreate;
+		this.sumClick=sumClick;
 		this.link=link;
 	}
 	
@@ -64,6 +68,20 @@ public class LinkHistory {
 	 */
 	public void setIdLinkHistory(Long idLinkHistory) {
 		this.idLinkHistory = idLinkHistory;
+	}
+	
+	/**
+	 * @return the ipAddress
+	 */
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	/**
+	 * @param ipAddress the ipAddress to set
+	 */
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
 	}
 
 	/**
@@ -81,19 +99,19 @@ public class LinkHistory {
 	}
 
 	/**
-	 * @return the ipAddress
+	 * @return the sumClick
 	 */
-	public String getIpAddress() {
-		return ipAddress;
+	public Long getSumClick() {
+		return sumClick;
 	}
 
 	/**
-	 * @param ipAddress the ipAddress to set
+	 * @param sumClick the sumClick to set
 	 */
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
+	public void setSumClick(Long sumClick) {
+		this.sumClick = sumClick;
 	}
-
+	
 	/**
 	 * @return the link
 	 */
