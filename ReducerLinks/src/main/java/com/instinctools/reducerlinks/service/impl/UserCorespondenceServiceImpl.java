@@ -37,7 +37,7 @@ public class UserCorespondenceServiceImpl extends CommonEntityServiceImpl implem
 
 	private Matcher matcher;
 	
-	private static final String email_pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	private static final String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	public Boolean isUniqueEmail(String email){
@@ -45,7 +45,7 @@ public class UserCorespondenceServiceImpl extends CommonEntityServiceImpl implem
 	}
 	
 	public Boolean isValidEmail(String email){
-		pattern = Pattern.compile(email_pattern);
+		pattern = Pattern.compile(emailPattern);
 		matcher = pattern.matcher(email);
 		return matcher.matches();
 	}

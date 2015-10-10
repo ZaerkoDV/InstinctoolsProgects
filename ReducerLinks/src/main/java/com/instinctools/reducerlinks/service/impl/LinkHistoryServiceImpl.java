@@ -5,6 +5,8 @@ package com.instinctools.reducerlinks.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -34,6 +36,16 @@ public class LinkHistoryServiceImpl extends CommonEntityServiceImpl implements L
 	public void setLinkHistoryDAO(LinkHistoryDAO linkHistoryDAO) {
 		this.linkHistoryDAO = linkHistoryDAO;
 	}
+	
+	private Pattern pattern;
+
+	private Matcher matcher;
+	
+	private static final String ipAddressPattern="^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+			"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+			"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+			"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";;
+		
 
 	public List<String> getListIpAddressForUser(Long idUser){
 		return linkHistoryDAO.getListIpAddressForUser(idUser);
@@ -47,5 +59,9 @@ public class LinkHistoryServiceImpl extends CommonEntityServiceImpl implements L
 		return linkHistoryDAO.getListLinkHistoryForUserBetweenDate(idUser, minDate, maxDate);
 	}
 	
-	//isValidIp
+	public Boolean isValidIpAddress(String idAddress){
+		pattern = Pattern.compile(ipAddressPattern);
+		matcher = pattern.matcher(idAddress);
+		return matcher.matches();
+	}
 }

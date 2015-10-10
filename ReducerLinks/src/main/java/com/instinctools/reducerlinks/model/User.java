@@ -29,16 +29,16 @@ public class User {
 	@SequenceGenerator(name = "seq_genn", sequenceName = "public.id_user_seq", initialValue=1, allocationSize=1)
 	@Column(name="id_user",columnDefinition="integer", nullable = false)
 	private Long idUser;
-	
+
 	@Column(name="first_name")
 	private String firstName;
-	
+
 	@Column(name="last_name")
 	private String lastName;
-	
+
 	@Column(name="middle_name")
 	private String middleName;
-	
+
 	@Past
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="birthday")
@@ -46,7 +46,7 @@ public class User {
 
 	public User(){
 	}
-	
+
 	public User(Long idUser, String firstName, String lastName, String middleName,Date birthday){
 		this.idUser=idUser;
 		this.firstName=firstName;
@@ -54,7 +54,7 @@ public class User {
 		this.middleName=middleName;
 		this.birthday=birthday;
 	}
-	
+
 	/**
 	 * @return the idUser
 	 */
@@ -123,5 +123,31 @@ public class User {
 	 */
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		if(!this.idUser.equals(null)){
+			return this.idUser.toString()+" "+ this.firstName+" "+this.lastName+" "
+					+this.middleName+" "+this.birthday;
+		}
+		return super.toString();
+	}
+
+	public boolean equalsObject(Object obj) {
+		boolean result = false;
+		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
+
+			final User other = (User) obj;
+			if (this.idUser.equals(other.idUser)) {
+				result = true;
+			}
+		}
+		return result;
 	}
 }

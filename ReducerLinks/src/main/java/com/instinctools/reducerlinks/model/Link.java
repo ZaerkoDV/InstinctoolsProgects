@@ -140,4 +140,30 @@ public class Link {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		if(!this.idLink.equals(null)){
+			return this.idLink.toString()+" "+ this.tag+" "+this.comment+" "
+					+this.fullUrl+" "+this.shortUrl;
+		}
+		return super.toString();
+	}
+
+	public boolean equalsObject(Object obj) {
+		boolean result = false;
+		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
+
+			final Link other = (Link) obj;
+			if (this.idLink.equals(other.idLink)) {
+				result = true;
+			}
+		}
+		return result;
+	}
 }

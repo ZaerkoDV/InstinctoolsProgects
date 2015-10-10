@@ -121,4 +121,30 @@ public class UserCorespondence {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		if(!this.idUserCorespondence.equals(null)){
+			return this.idUserCorespondence.toString()+" "+ this.email+" "+this.skype+" "
+					+this.telephone;
+		}
+		return super.toString();
+	}
+
+	public boolean equalsObject(Object obj) {
+		boolean result = false;
+		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
+
+			final UserCorespondence other = (UserCorespondence) obj;
+			if (this.idUserCorespondence.equals(other.idUserCorespondence)) {
+				result = true;
+			}
+		}
+		return result;
+	}
 }

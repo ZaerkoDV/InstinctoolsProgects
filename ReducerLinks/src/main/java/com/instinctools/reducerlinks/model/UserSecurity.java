@@ -118,4 +118,30 @@ public class UserSecurity {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		if(!this.idUserSecurity.equals(null)){
+			return this.idUserSecurity.toString()+" "+ this.login+" "+this.password+" "
+					+this.role;
+		}
+		return super.toString();
+	}
+
+	public boolean equalsObject(Object obj) {
+		boolean result = false;
+		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
+
+			final UserSecurity other = (UserSecurity) obj;
+			if (this.idUserSecurity.equals(other.idUserSecurity)) {
+				result = true;
+			}
+		}
+		return result;
+	}
 }

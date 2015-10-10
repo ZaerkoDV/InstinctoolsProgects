@@ -125,4 +125,30 @@ public class LinkHistory {
 	public void setLink(Link link) {
 		this.link = link;
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		if(!this.idLinkHistory.equals(null)){
+			return this.idLinkHistory.toString()+" "+ this.ipAddress+" "+this.lastCreate+" "
+					+this.sumClick;
+		}
+		return super.toString();
+	}
+
+	public boolean equalsObject(Object obj) {
+		boolean result = false;
+		if (!obj.equals(null) && getClass().equals(obj.getClass())) {
+
+			final LinkHistory other = (LinkHistory) obj;
+			if (this.idLinkHistory.equals(other.idLinkHistory)) {
+				result = true;
+			}
+		}
+		return result;
+	}
 }
