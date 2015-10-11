@@ -56,6 +56,7 @@ public class UserSecurityeServiceTest {//extends TestStarter {
 //	@Test
 //	public void testSaveUserSecurity(){
 //		
+//		logger.info("UserSecurityeServiceTest:UserSecurity save successfully.");
 //		Assert.assertNotNull(userSecurityService
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
 //	}
@@ -66,6 +67,7 @@ public class UserSecurityeServiceTest {//extends TestStarter {
 //	public void testGettingUserSecurityById(){
 //		Object entity=userSecurityService
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
+//		logger.info("UserSecurityeServiceTest:UserSecurity load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -78,6 +80,8 @@ public class UserSecurityeServiceTest {//extends TestStarter {
 //		userSecurityService.updateEntity(userSecurity);
 //		final UserSecurity updatedUserSecurity =(UserSecurity) userSecurityService.
 //				getEntityById(UserSecurity.class,userSecurity.getIdUserSecurity());	
+//		
+//		logger.info("UserSecurityeServiceTest:UserSecurity update successfully.");
 //		Assert.assertTrue(updatedUserSecurity.getRole().equals("admin"));
 //	}
 //
@@ -85,7 +89,9 @@ public class UserSecurityeServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testDeleteUserSecurityById(){
+//		
 //		userSecurityService.deleteEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
+//		logger.info("UserSecurityeServiceTest:UserSecurity delete by id successfully.");
 //		Assert.assertNull(userSecurityService
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
 //	}
@@ -94,7 +100,9 @@ public class UserSecurityeServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testDeleteUserSecurity(){
+//		
 //		userSecurityService.deleteEntity(userSecurity);
+//		logger.info("UserSecurityeServiceTest:UserSecurity delete successfully.");
 //		Assert.assertNull(userSecurityService
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
 //	}
@@ -105,6 +113,7 @@ public class UserSecurityeServiceTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllUserSecurity(){
 //		List<UserSecurity> list = (List)userSecurityService.getAllEntity(UserSecurity.class);
+//		logger.info("UserSecurityeServiceTest:List of UserSecurity load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //	
@@ -123,5 +132,7 @@ public class UserSecurityeServiceTest {//extends TestStarter {
 //		password="falsePassword";
 //		isUnique=userSecurityService.isUniqueLoginPassword(login,password);
 //		Assert.assertTrue(isUnique);
+//		
+//		logger.info("UserSecurityeServiceTest:Check login and password on unique value completed.");
 //	}	
 }

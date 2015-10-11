@@ -54,11 +54,20 @@ public class CommonEntityServiceTest {//extends TestStarter {
 //	@Transactional
 //	@Rollback(true)
 //	@Test
+//	public void testSaveEntity(){
+//		logger.info("EntityServiceTest:Test entity save successfully.");
+//		Assert.assertNotNull(commonEntityService.getEntityById(User.class, user.getIdUser()));
+//	}
+//	
+//	@Transactional
+//	@Rollback(true)
+//	@Test
 //	public void testGettingEntityById(){
 //		Object entity=commonEntityService.getEntityById(User.class, user.getIdUser());
+//		logger.info("EntityServiceTest:Test entity load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
-//
+//	
 //	@Transactional
 //	@Rollback(true)
 //	@Test
@@ -66,8 +75,8 @@ public class CommonEntityServiceTest {//extends TestStarter {
 //
 //		user.setFirstName("testFirstName2");
 //		commonEntityService.updateEntity(user);
-//
 //		final User updatedUser =(User) commonEntityService.getEntityById(User.class, user.getIdUser());	
+//		logger.info("EntityServiceTest:Test entity update successfully.");
 //		Assert.assertTrue(updatedUser.getFirstName().equals("testFirstName2"));
 //	}
 //
@@ -76,6 +85,7 @@ public class CommonEntityServiceTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteEntityById(){
 //		commonEntityService.deleteEntityById(User.class, user.getIdUser());
+//		logger.info("EntityServiceTest:Test entity delete by id successfully.");
 //		Assert.assertNull(commonEntityService.getEntityById(User.class, user.getIdUser()));
 //	}
 //	
@@ -84,6 +94,7 @@ public class CommonEntityServiceTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteEntity(){
 //		commonEntityService.deleteEntity(user);
+//		logger.info("EntityServiceTest:Test entity delete successfully.");
 //		Assert.assertNull(commonEntityService.getEntityById(User.class, user.getIdUser()));
 //	}
 //	
@@ -93,6 +104,7 @@ public class CommonEntityServiceTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllEntity(){
 //		List<User> list = (List)commonEntityService.getAllEntity(User.class);
+//		logger.info("EntityServiceTest:List of test entity load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 

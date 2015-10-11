@@ -57,7 +57,7 @@ public class UserSecurityeDAOTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testSaveUserSecurity(){
-//		
+//		logger.info("UserSecurityeDAOTest:Test user security feature save successfully.");
 //		Assert.assertNotNull(userSecurityDAO
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
 //	}
@@ -68,6 +68,7 @@ public class UserSecurityeDAOTest {//extends TestStarter {
 //	public void testGettingUserSecurityById(){
 //		Object entity=userSecurityDAO
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
+//		logger.info("UserSecurityeDAOTest:Test user security feature load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -80,6 +81,7 @@ public class UserSecurityeDAOTest {//extends TestStarter {
 //		userSecurityDAO.updateEntity(userSecurity);
 //		final UserSecurity updatedUserSecurity =(UserSecurity) userSecurityDAO.
 //				getEntityById(UserSecurity.class,userSecurity.getIdUserSecurity());	
+//		logger.info("UserSecurityeDAOTest:Test user security feature update successfully.");
 //		Assert.assertTrue(updatedUserSecurity.getRole().equals("admin"));
 //	}
 //
@@ -88,6 +90,7 @@ public class UserSecurityeDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUserSecurityById(){
 //		userSecurityDAO.deleteEntityById(UserSecurity.class, userSecurity.getIdUserSecurity());
+//		logger.info("UserSecurityeDAOTest:Test user security feature delete by id successfully.");
 //		Assert.assertNull(userSecurityDAO
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
 //	}
@@ -97,6 +100,7 @@ public class UserSecurityeDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUserSecurity(){
 //		userSecurityDAO.deleteEntity(userSecurity);
+//		logger.info("UserSecurityeDAOTest:Test user security feature delete successfully.");
 //		Assert.assertNull(userSecurityDAO
 //				.getEntityById(UserSecurity.class, userSecurity.getIdUserSecurity()));
 //	}
@@ -107,6 +111,7 @@ public class UserSecurityeDAOTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllUserSecurity(){
 //		List<UserSecurity> list = (List)userSecurityDAO.getAllEntity(UserSecurity.class);
+//		logger.info("UserSecurityeDAOTest:List of test user security feature load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //	
@@ -125,5 +130,7 @@ public class UserSecurityeDAOTest {//extends TestStarter {
 //		password="falsePassword";
 //		isUnique=userSecurityDAO.isUniqueLoginPassword(login,password);
 //		Assert.assertTrue(isUnique);
+//		
+//		logger.info("UserSecurityeDAOTest:Test user login and password on unique are successfully completed.");
 //	}	
 }

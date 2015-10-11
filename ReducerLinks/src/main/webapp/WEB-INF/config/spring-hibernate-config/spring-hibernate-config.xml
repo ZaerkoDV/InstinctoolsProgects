@@ -118,6 +118,7 @@
 
 	<context:annotation-config/>
 	<context:component-scan base-package="com.instinctools.reducerlinks">
+		<context:include-filter type="regex" expression="com.instinctools.reducerlinks.*"/>	
 		<context:include-filter type="regex" expression="com.instinctools.reducerlinks.dao.*"/>
 		<context:include-filter type="regex" expression="com.instinctools.reducerlinks.service.*"/>
 		<context:include-filter type="regex" expression="com.instinctools.reducerlinks.controller.*"/>

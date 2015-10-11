@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,6 +57,7 @@ public class UserCorespondenceDAOTest {//extends TestStarter {
 //	@Test
 //	public void testSaveUserCorespondence(){
 //		
+//		logger.info("UserCorespondenceDAOTest:Test user corespondence save successfully.");
 //		Assert.assertNotNull(userCorespondenceDAO
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence()));
 //	}
@@ -68,6 +68,7 @@ public class UserCorespondenceDAOTest {//extends TestStarter {
 //	public void testGettingUserCorespondenceById(){
 //		Object entity=userCorespondenceDAO
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence());
+//		logger.info("UserCorespondenceDAOTest:Test user corespondence load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -78,8 +79,10 @@ public class UserCorespondenceDAOTest {//extends TestStarter {
 //
 //		userCorespondence.setSkype("mytest.skype");
 //		userCorespondenceDAO.updateEntity(userCorespondence);
+//		
 //		final UserCorespondence updatedUserCorespondence =(UserCorespondence) userCorespondenceDAO.
 //				getEntityById(UserCorespondence.class,userCorespondence.getIdUserCorespondence());	
+//		logger.info("UserCorespondenceDAOTest:Test user corespondence update successfully.");
 //		Assert.assertTrue(updatedUserCorespondence.getSkype().equals("mytest.skype"));
 //	}
 //
@@ -88,6 +91,7 @@ public class UserCorespondenceDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUserCorespondenceById(){
 //		userCorespondenceDAO.deleteEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence());
+//		logger.info("UserCorespondenceDAOTest:Test user corespondence delete by id successfully.");
 //		Assert.assertNull(userCorespondenceDAO
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence()));
 //	}
@@ -97,6 +101,7 @@ public class UserCorespondenceDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUserCorespondence(){
 //		userCorespondenceDAO.deleteEntity(userCorespondence);
+//		logger.info("UserCorespondenceDAOTest:Test user corespondence delete successfully.");
 //		Assert.assertNull(userCorespondenceDAO
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence()));
 //	}
@@ -107,6 +112,7 @@ public class UserCorespondenceDAOTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllUserCorespondence(){
 //		List<User> list = (List)userCorespondenceDAO.getAllEntity(UserCorespondence.class);
+//		logger.info("UserCorespondenceDAOTest:List of test user corespondence load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //	
@@ -121,5 +127,6 @@ public class UserCorespondenceDAOTest {//extends TestStarter {
 //		
 //		isUnique=userCorespondenceDAO.isUniqueEmail("unique@mail.ru");
 //		Assert.assertTrue(isUnique);
+//		logger.info("UserCorespondenceDAOTest:Test email successfully completed.");
 //	}
 }

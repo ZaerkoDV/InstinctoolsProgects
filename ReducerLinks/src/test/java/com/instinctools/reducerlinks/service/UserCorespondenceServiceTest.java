@@ -4,9 +4,7 @@
 package com.instinctools.reducerlinks.service;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,6 +55,7 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //	@Test
 //	public void testSaveUserCorespondence(){
 //		
+//		logger.info("UserCorespondenceServiceTest:UserCorespondence save successfully.");
 //		Assert.assertNotNull(userCorespondenceService
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence()));
 //	}
@@ -67,6 +66,7 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //	public void testGettingUserCorespondenceById(){
 //		Object entity=userCorespondenceService
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence());
+//		logger.info("UserCorespondenceServiceTest:UserCorespondence load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -79,6 +79,8 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //		userCorespondenceService.updateEntity(userCorespondence);
 //		final UserCorespondence updatedUserCorespondence =(UserCorespondence) userCorespondenceService.
 //				getEntityById(UserCorespondence.class,userCorespondence.getIdUserCorespondence());	
+//		
+//		logger.info("UserCorespondenceServiceTest:UserCorespondence update successfully.");
 //		Assert.assertTrue(updatedUserCorespondence.getSkype().equals("mytest.skype"));
 //	}
 //
@@ -86,7 +88,9 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testDeleteUserCorespondenceById(){
+//		
 //		userCorespondenceService.deleteEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence());
+//		logger.info("UserCorespondenceServiceTest:UserCorespondence delete by id successfully.");
 //		Assert.assertNull(userCorespondenceService
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence()));
 //	}
@@ -95,7 +99,9 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testDeleteUserCorespondence(){
+//		
 //		userCorespondenceService.deleteEntity(userCorespondence);
+//		logger.info("UserCorespondenceServiceTest:UserCorespondence delete successfully.");
 //		Assert.assertNull(userCorespondenceService
 //				.getEntityById(UserCorespondence.class, userCorespondence.getIdUserCorespondence()));
 //	}
@@ -106,6 +112,7 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllUserCorespondence(){
 //		List<User> list = (List)userCorespondenceService.getAllEntity(UserCorespondence.class);
+//		logger.info("UserCorespondenceServiceTest:List of UserCorespondence load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //	
@@ -117,9 +124,10 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //		Boolean isUnique;
 //		isUnique=userCorespondenceService.isUniqueEmail(userCorespondence.getEmail());
 //		Assert.assertFalse(isUnique);
-//		
 //		isUnique=userCorespondenceService.isUniqueEmail("unique@mail.ru");
 //		Assert.assertTrue(isUnique);
+//		
+//		logger.info("UserCorespondenceServiceTest:Cheack email in unique value completed.");
 //	}
 //	
 //	@Transactional
@@ -128,11 +136,11 @@ public class UserCorespondenceServiceTest {//extends TestStarter {
 //	public void testOnValidEmail(){
 //		
 //		Boolean isValidEmail;
-//		
 //		isValidEmail=userCorespondenceService.isValidEmail(userCorespondence.getEmail());
 //		Assert.assertTrue(isValidEmail);
-//		
 //		isValidEmail=userCorespondenceService.isValidEmail("falsegmail.com");
 //		Assert.assertFalse(isValidEmail);
+//		
+//		logger.info("UserCorespondenceServiceTest:Cheack email on valid value completed.");
 //	}
 }

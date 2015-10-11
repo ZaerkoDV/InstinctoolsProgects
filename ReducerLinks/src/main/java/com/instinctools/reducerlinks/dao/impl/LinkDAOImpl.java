@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.instinctools.reducerlinks.dao.LinkDAO;
 import com.instinctools.reducerlinks.model.Link;
 import com.instinctools.reducerlinks.model.LinkHistory;
-import com.instinctools.reducerlinks.model.User;
 
 /**
  * @author Zaerko_DV
@@ -48,8 +47,10 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		List<Link> list;
 		try {
 			list= (List<Link>)criteria.list();
+			logger.info("LinkDAO:Link list sort by tag loaded successfully.");
 		} catch (NullPointerException e) {
 			list=Collections.emptyList();
+			logger.info("LinkDAO: Link list loaded, but list is empty"+e);
 		}
 		return list;
 	}
@@ -69,8 +70,11 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		List<Link> list;
 		try {
 			list= (List<Link>)criteria.list();
+			logger.info("LinkDAO:Link list sort by date(create) loaded successfully.");
+			
 		} catch (NullPointerException e) {
 			list=Collections.emptyList();
+			logger.info("LinkDAO:Link list sort by date(create) loaded but is empty.");
 		}
 		return list;
 	}
@@ -81,7 +85,7 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(Link.class);
-		//criteria.setProjection(Projections.property("tag"));//надо уникальные
+		
 		criteria.setProjection(Projections.projectionList()
 		        .add( Projections.distinct(Projections.property("tag"))));
 		criteria.setMaxResults(20);
@@ -90,8 +94,11 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		List<String> list;
 		try {
 			list= (List<String>)criteria.list();
+			logger.info("LinkDAO:Tag list loaded successfully. Size list="+list.size());
+			
 		} catch (NullPointerException e) {
 			list=Collections.emptyList();
+			logger.info("LinkDAO:Tag list loaded successfully.But list is empty");
 		}
 		return list;
 	}
@@ -112,9 +119,10 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 			linkHistory.setSumClick(sumClick+(long)1);
 			updateEntity(linkHistory);
 			sumClick=linkHistory.getSumClick();
-
+			logger.info("LinkDAO:Count of visits link increse by 1.");
+			
 		}catch(final DataAccessException e){
-			logger.info("DAO:Number of visits link not updated. Because error"+e);
+			logger.info("LinkDAO:Number of visits link not updated. Because error"+e);
 		}
 		return sumClick;
 	}
@@ -130,10 +138,11 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		Long sumClick = null;
 		try{
 			sumClick = (Long)criteria.uniqueResult();
-
+			logger.info("LinkDAO:Count of visits link loaded sucessfully");
+			
 		}catch(final DataAccessException e){
 			sumClick =(long)0;
-			logger.info("DAO:Number of visits link not updated. Because error"+e);
+			logger.info("LinkDAO:Number of visits link not updated. Because error"+e);
 		}
 		return sumClick;
 	}

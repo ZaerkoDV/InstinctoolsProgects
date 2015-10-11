@@ -66,6 +66,8 @@ public class UserServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testSaveUser(){
+//		
+//		logger.info("UserServiceTest:User save successfully.");
 //		Assert.assertNotNull(userService.getEntityById(User.class, user.getIdUser()));
 //	}
 //
@@ -74,6 +76,7 @@ public class UserServiceTest {//extends TestStarter {
 //	@Test
 //	public void testGettingUserById(){
 //		Object entity=userService.getEntityById(User.class, user.getIdUser());
+//		logger.info("UserServiceTest:User load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -85,6 +88,7 @@ public class UserServiceTest {//extends TestStarter {
 //		user.setFirstName("testFirstName2");
 //		userService.updateEntity(user);
 //		final User updatedUser =(User) userService.getEntityById(User.class, user.getIdUser());	
+//		logger.info("UserServiceTest:User update successfully.");
 //		Assert.assertTrue(updatedUser.getFirstName().equals("testFirstName2"));
 //	}
 //
@@ -93,6 +97,7 @@ public class UserServiceTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUserById(){
 //		userService.deleteEntityById(User.class, user.getIdUser());
+//		logger.info("UserServiceTest:User delete by id successfully.");
 //		Assert.assertNull(userService.getEntityById(User.class, user.getIdUser()));
 //	}
 //
@@ -101,6 +106,7 @@ public class UserServiceTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUser(){
 //		userService.deleteEntity(user);
+//		logger.info("UserServiceTest:User delete successfully.");
 //		Assert.assertNull(userService.getEntityById(User.class, user.getIdUser()));
 //	}
 //
@@ -110,6 +116,7 @@ public class UserServiceTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllUsers(){
 //		List<User> list = (List)userService.getAllEntity(User.class);
+//		logger.info("UserServiceTest:List of user load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //
@@ -120,9 +127,9 @@ public class UserServiceTest {//extends TestStarter {
 //
 //		User userByEmail=userService.getUserByEmail(userCorespondence.getEmail());
 //		Assert.assertNotNull(userByEmail);
-//
 //		userByEmail=userService.getUserByEmail("same@gmail.com");
 //		Assert.assertNull(userByEmail);
+//		logger.info("UserServiceTest:User load by his email.");
 //	}
 //	
 //	@Transactional
@@ -131,18 +138,18 @@ public class UserServiceTest {//extends TestStarter {
 //	public void testGettingIdUserByLoginPassword(){
 //
 //		testObjectCreator.deleteUserCorespondenceAfterTest(userCorespondence.getIdUserCorespondence());
-//		
 //		//login and password exist.
 //		String login=userSecurity.getLogin();
 //		String password=userSecurity.getPassword();
 //		Long idUser=userService.getIdUserByLoginPassword(login,password);
 //		Assert.assertNotNull(idUser);
-//
 //		//login and password not exist
 //		login="falseLogin";
 //		password="falsePassword";
 //		idUser=userService.getIdUserByLoginPassword(login,password);
 //		Assert.assertNull(idUser);
+//		
+//		logger.info("UserServiceTest:User id load by login and password.");
 //	}
 //	
 //	@Transactional
@@ -157,12 +164,13 @@ public class UserServiceTest {//extends TestStarter {
 //		String password=userSecurity.getPassword();
 //		User user=userService.getUserByLoginPassword(login,password);
 //		Assert.assertNotNull(user);
-//
 //		//login and password not exist
 //		login="falseLogin";
 //		password="falsePassword";
 //		user=userService.getUserByLoginPassword(login,password);
 //		Assert.assertNull(user);
+//		
+//		logger.info("UserServiceTest:User load by login and password.");
 //	}
 //		
 //	@Transactional
@@ -172,9 +180,10 @@ public class UserServiceTest {//extends TestStarter {
 //
 //		List<User> userList=userService.getListUserByLastName(user.getLastName());
 //		Assert.assertFalse(userList.isEmpty());
-//
 //		userList=userService.getListUserByLastName("sameLastName");
 //		Assert.assertTrue(userList.isEmpty());
+//		
+//		logger.info("UserServiceTest:List of users load by last name.");
 //	}
 //	
 //	@Transactional
@@ -189,9 +198,11 @@ public class UserServiceTest {//extends TestStarter {
 //		Assert.assertTrue(userService.signInUserByLoginPassword(login,password));
 //
 //		//login and password not exist
-//		String login2="falseLogin";
-//		String password2="falsePassword";
-//		Assert.assertFalse(userService.signInUserByLoginPassword(login2,password2));
+//		login="falseLogin";
+//		password="falsePassword";
+//		Assert.assertFalse(userService.signInUserByLoginPassword(login,password));
+//		
+//		logger.info("UserServiceTest:Operation sign in by login and password completed.");
 //	}
 //	
 //	@Transactional
@@ -209,6 +220,8 @@ public class UserServiceTest {//extends TestStarter {
 //		idUser=(long)20;
 //		userList=userService.getUserLinksSortByRecency(idUser);
 //		Assert.assertTrue(userList.isEmpty());
+//		
+//		logger.info("UserServiceTest:List of user link load successfully.");
 //	}
 //		
 //	@Transactional
@@ -224,6 +237,8 @@ public class UserServiceTest {//extends TestStarter {
 //		Assert.assertFalse(userCorespondenceList.isEmpty());
 //		userCorespondenceList=userService.getListUserCorespondences((long)20);
 //		Assert.assertTrue(userCorespondenceList.isEmpty());
+//		
+//		logger.info("UserServiceTest:List of user corespondene load successfully.");
 //	}
 //	
 //	@Transactional
@@ -234,5 +249,6 @@ public class UserServiceTest {//extends TestStarter {
 //		int expected=(int)3;
 //		int actual=userService.getCountOfUser();
 //		Assert.assertEquals(expected,actual);
+//		logger.info("UserServiceTest:Number of users in system load.");
 //	}	
 }

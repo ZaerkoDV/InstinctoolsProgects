@@ -41,8 +41,10 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		User user = null;
 		try {
 			user=(User)criteria.uniqueResult();
+			logger.info("UserDAO:User by his email loaded sucessfully.");
 		}catch (NullPointerException e){
 			user= null;
+			logger.info("UserDAO:User by his email not loaded.");
 		}
 		return user;
 	}
@@ -60,8 +62,11 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		Long idUser;
 		try {
 			idUser = (Long)criteria.uniqueResult();	
+			logger.info("UserDAO:User id loaded sucessfully by his login and password.");
+			
 		}catch (final NullPointerException e) {
 			idUser = null;
+			logger.info("UserDAO:User id not loaded by his login and password sucessfully.");
 		}
 		return idUser;
 	}
@@ -78,9 +83,12 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 
 		User user;
 		try {
-			user = (User)criteria.uniqueResult();	
+			user = (User)criteria.uniqueResult();
+			logger.info("UserDAO:User loaded by his login and password sucessfully");
+			
 		}catch (final NullPointerException e) {
 			user = null;
+			logger.info("UserDAO:User not loaded by his login and password.");
 		}
 		return user;
 	}
@@ -98,8 +106,11 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		List<User> list;
 		try {
 			list= (List<User>)criteria.list();
+			logger.info("UserDAO:List of users loaded sucessfully by his lastname.");
+			
 		} catch (NullPointerException e) {
 			list=Collections.emptyList();
+			logger.info("UserDAO:User loaded by his  lastname but list is empty.");
 		}
 		return list;
 	}
@@ -118,10 +129,11 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 
 		try {
 			user=(User) criteria.uniqueResult();
-			logger.info("User "+user.getFirstName()+" sign in in system");
+			logger.info("UserDAO:User "+user.getFirstName()+" sign in in system sucessfully");
 			signIn=true;
 		}catch (NullPointerException e) {
 			signIn=false;
+			logger.info("UserDAO:User not sign in in system.");
 		}
 		return signIn;
 	}
@@ -145,9 +157,10 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		List<Link> list = null;
 		try {
 			list=(List<Link>)criteria.list();
-
+			logger.info("UserDAO:Links list sort by recency loaded.");
 		}catch (NullPointerException e){
 			list = Collections.emptyList();
+			logger.info("UserDAO:Links list sort by recency is empty.");
 		}
 		return list;
 	}
@@ -158,18 +171,18 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(UserCorespondence.class);
-
 		criteria.createAlias("user", "u");
 		criteria.add(Restrictions.eq("u.idUser", idUser));
-
 		criteria.setMaxResults(20);
 		criteria.setFirstResult(0);
 
 		List<UserCorespondence> list=null;
 		try {
 			list=(List<UserCorespondence>)criteria.list();
+			logger.info("UserDAO:List of user corespondences loaded.");
 		}catch (NullPointerException e){
 			list = Collections.emptyList();
+			logger.info("UserDAO:List of user corespondences is empty.");
 		}
 		return list;
 	}
@@ -182,8 +195,11 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		int count;	
 		try{
 			count=(int)criteria.list().size();
+			logger.info("UserDAO:Number of users in system loaded.");
+			
 		}catch(NullPointerException e){
 			count= 0;
+			logger.info("UserDAO:Number of users in system loaded and equals zero.");
 		}
 		return count;
 	}

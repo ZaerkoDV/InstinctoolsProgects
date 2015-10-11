@@ -19,8 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.instinctools.reducerlinks.dao.LinkHistoryDAO;
 import com.instinctools.reducerlinks.model.LinkHistory;
-import com.instinctools.reducerlinks.model.User;
-import com.instinctools.reducerlinks.model.UserCorespondence;
 
 /**
  * @author Zaerko_DV
@@ -51,14 +49,15 @@ public class LinkHistoryDAOImpl extends CommonEntityDAOImpl implements LinkHisto
 		List<String> listIpAddreses= null;
 		try {
 			listIpAddreses=(List<String>)criteria.list();
-
+			logger.info("LinkHistoryDAO:List of ip addreses loaded sucessfully");
+			
 		}catch (NullPointerException e){
 			listIpAddreses= Collections.emptyList();
+			logger.info("LinkHistoryDAO:List of ip addreses loaded buy is empty.");
 		}
 		return listIpAddreses;
 	}
 	
-	//история изменений которые внес юзер в ссылки
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<LinkHistory> getListLinkHistoryForUser(Long idUser){
@@ -77,9 +76,10 @@ public class LinkHistoryDAOImpl extends CommonEntityDAOImpl implements LinkHisto
 		List<LinkHistory> listLinkHistory= null;
 		try {
 			listLinkHistory=(List<LinkHistory>)criteria.list();
-
+			logger.info("LinkHistoryDAO:List of links history loaded sucessfully by user id.");
 		}catch (NullPointerException e){
 			listLinkHistory= Collections.emptyList();
+			logger.info("LinkHistoryDAO:List of user links history loaded but is empty.");
 		}
 		return listLinkHistory;
 	}
@@ -93,7 +93,6 @@ public class LinkHistoryDAOImpl extends CommonEntityDAOImpl implements LinkHisto
 		
 		criteria.createAlias("link", "l");
 		criteria.createAlias("l.user", "u");
-		//criteria.add(Restrictions.eq("l.u.idUser", idUser));
 		Conjunction and = Restrictions.conjunction();
 		//links belong to user
 		and.add(Restrictions.eq("u.idUser", idUser));
@@ -109,9 +108,12 @@ public class LinkHistoryDAOImpl extends CommonEntityDAOImpl implements LinkHisto
 		List<LinkHistory> listLinkHistory= null;
 		try {
 			listLinkHistory=(List<LinkHistory>)criteria.list();
-
+			logger.info("LinkHistoryDAO:LinkHistoryDAO:List of user links history"
+					+ " loaded.History between max and min date.");
+			
 		}catch (NullPointerException e){
 			listLinkHistory= Collections.emptyList();
+			logger.info("LinkHistoryDAO:List of user links history loaded but list is empty.");
 		}
 		return listLinkHistory;
 	}

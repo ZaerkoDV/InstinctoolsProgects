@@ -29,11 +29,11 @@ public class CommonEntityDAOImpl extends HibernateDaoSupport implements CommonEn
 	public <T> Object getEntityById(Class<T> entityClass,Long idEntity) {
 
 		try{
-			logger.info("DAO:Entity"+entityClass.getName()+" loaded successfully id="+idEntity);
+			logger.info("EntityDAO:Entity"+entityClass.getName()+" loaded successfully id="+idEntity);
 			return this.getHibernateTemplate().get(entityClass, idEntity);
 			
 		}catch(final HibernateObjectRetrievalFailureException e){
-			logger.info("DAO:Entity not loaded,becouse successfully delete or never exist before"+e);
+			logger.info("EntityDAO:Entity not loaded,becouse successfully delete or never before exist"+e);
 			return null;
 		}
 	}
@@ -42,7 +42,7 @@ public class CommonEntityDAOImpl extends HibernateDaoSupport implements CommonEn
 	public void saveEntity(Object entity){
 		
 		this.getHibernateTemplate().save(entity);
-		logger.info("DAO:Entity save successfully");
+		logger.info("EntityDAO:Entity save successfully");
 		this.getHibernateTemplate().flush();
 	}
 	
@@ -50,14 +50,14 @@ public class CommonEntityDAOImpl extends HibernateDaoSupport implements CommonEn
 	public void updateEntity(Object entity){
 		
 		this.getHibernateTemplate().update(entity);
-		logger.info("DAO:Entity update successfully");
+		logger.info("EntityDAO:Entity update successfully");
 		this.getHibernateTemplate().flush();
 	}
 	
 	@Transactional
 	public <T> void deleteEntityById(Class<T> entityClass,Long idEntity){
 		
-		logger.info("DAO:Entity"+entityClass.getName()+" delete successfully,id="+idEntity);
+		logger.info("EntityDAO:Entity"+entityClass.getName()+" delete successfully,id="+idEntity);
 		Object entity =this.getHibernateTemplate().get(entityClass, idEntity);
 		
 		this.getHibernateTemplate().delete(entity);
@@ -67,11 +67,10 @@ public class CommonEntityDAOImpl extends HibernateDaoSupport implements CommonEn
 	@Transactional
 	public void deleteEntity(Object entity){
 		
-		logger.info("DAO:Entity delete successfully");
+		logger.info("EntityDAO:Entity "+entity+" delete successfully");
 		this.getHibernateTemplate().delete(entity);
 		this.getHibernateTemplate().flush();
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
@@ -81,12 +80,13 @@ public class CommonEntityDAOImpl extends HibernateDaoSupport implements CommonEn
 				.createCriteria(entityClass);	
 		criteria.setMaxResults(20);
 		criteria.setFirstResult(0);
-		
 		try{
+			logger.info("EntityDAO:List entity loaded successfully.");
 			return criteria.list();
-			
 		}catch(NullPointerException e){
+			logger.info("EntityDAO:List entity loaded but is empty.");
 			return Collections.emptyList();
 		}
 	}
+	
 }

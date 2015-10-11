@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.instinctools.reducerlinks.dao.UserCorespondenceDAO;
-import com.instinctools.reducerlinks.dao.UserDAO;
 import com.instinctools.reducerlinks.service.UserCorespondenceService;
 /**
  * @author Zaerko_DV
@@ -41,10 +40,12 @@ public class UserCorespondenceServiceImpl extends CommonEntityServiceImpl implem
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	public Boolean isUniqueEmail(String email){
+		logger.info("UserCorespondenceService:Cheack email on unique value is completed.");
 		return userCorespondenceDAO.isUniqueEmail(email);
 	}
 	
 	public Boolean isValidEmail(String email){
+		logger.info("UserCorespondenceService:Cheack email on valid value is completed.");
 		pattern = Pattern.compile(emailPattern);
 		matcher = pattern.matcher(email);
 		return matcher.matches();

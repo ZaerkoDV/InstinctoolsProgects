@@ -5,10 +5,7 @@ package com.instinctools.reducerlinks.dao;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +19,6 @@ import com.instinctools.reducerlinks.TestObjectCreator;
 import com.instinctools.reducerlinks.TestStarter;
 import com.instinctools.reducerlinks.model.Link;
 import com.instinctools.reducerlinks.model.LinkHistory;
-import com.instinctools.reducerlinks.model.UserSecurity;
 
 /**
  * @author Zaerko_DV
@@ -60,6 +56,7 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testSaveLinkHistory(){
+//		logger.info("LinkHistoryDAOTest:Test link history save successfully.");
 //		Assert.assertNotNull(linkHistoryDAO.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory()));
 //	}
 //
@@ -68,6 +65,7 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //	@Test
 //	public void testGettingLinkHistoryById(){
 //		Object entity=linkHistoryDAO.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory());
+//		logger.info("LinkHistoryDAOTest:Test link history load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -79,7 +77,8 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //		linkHistory.setIpAddress("127.0.0.2");
 //		linkHistoryDAO.updateEntity(linkHistory);
 //		final LinkHistory updatedLinkHistory =(LinkHistory) linkHistoryDAO
-//				.getEntityById(LinkHistory.class,linkHistory.getIdLinkHistory());	
+//				.getEntityById(LinkHistory.class,linkHistory.getIdLinkHistory());
+//		logger.info("LinkHistoryDAOTest:Test link history update successfully.");
 //		Assert.assertTrue(updatedLinkHistory.getIpAddress().equals("127.0.0.2"));
 //	}
 //
@@ -88,6 +87,7 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteLinkHistoryById(){
 //		linkHistoryDAO.deleteEntityById(LinkHistory.class, linkHistory.getIdLinkHistory());
+//		logger.info("LinkHistoryDAOTest:Test link history delete by id successfully.");
 //		Assert.assertNull(linkHistoryDAO.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory()));
 //	}
 //	
@@ -96,6 +96,7 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //	@Test
 //	public void testLinkHistoryEntity(){
 //		linkHistoryDAO.deleteEntity(linkHistory);
+//		logger.info("LinkHistoryDAOTest:Test link history delete successfully.");
 //		Assert.assertNull(linkHistoryDAO.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory()));
 //	}
 //	
@@ -105,6 +106,7 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllLinkHistory(){
 //		List<Link> list = (List)linkHistoryDAO.getAllEntity(LinkHistory.class);
+//		logger.info("LinkHistoryDAOTest:List of test link history load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //	
@@ -123,6 +125,7 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //		idUser=(long)10;
 //		list=linkHistoryDAO.getListIpAddressForUser(idUser);
 //		Assert.assertTrue(list.isEmpty());
+//		logger.info("LinkHistoryDAOTest:List of user ip addreses load successfully.");
 //	}
 //	
 //	@Transactional
@@ -140,6 +143,7 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //		idUser=(long)10;
 //		list=linkHistoryDAO.getListLinkHistoryForUser(idUser);
 //		Assert.assertTrue(list.isEmpty());
+//		logger.info("LinkHistoryDAOTest:List of test link history for user load successfully.");
 //	}
 //	
 //	@Transactional
@@ -155,5 +159,6 @@ public class LinkHistoryDAOTest {//extends TestStarter {
 //		Date maxDate=new Date(date.getTime());
 //		list=linkHistoryDAO.getListLinkHistoryForUserBetweenDate(idUser, minDate, maxDate);
 //		Assert.assertFalse(list.isEmpty());
+//		logger.info("LinkHistoryDAOTest:List of test link history(between date) load successfully.");
 //	}
 }

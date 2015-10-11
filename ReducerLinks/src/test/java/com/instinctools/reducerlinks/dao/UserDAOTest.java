@@ -55,9 +55,9 @@ public class UserDAOTest {//extends TestStarter {
 //
 //	@Before
 //	public void initObjectsBeforeTest(){
+//		
 //		this.userCorespondence=testObjectCreator.createUserCorespondence();
 //		this.user=userCorespondence.getUser();
-//		
 //		this.userSecurity=testObjectCreator.createUserSecurity();
 //		this.linkHistory=testObjectCreator.createLinkHistoryForTest();
 //	}
@@ -66,6 +66,7 @@ public class UserDAOTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testSaveUser(){
+//		logger.info("UserDAOTest:Test user save successfully.");
 //		Assert.assertNotNull(userDAO.getEntityById(User.class, user.getIdUser()));
 //	}
 //
@@ -74,6 +75,7 @@ public class UserDAOTest {//extends TestStarter {
 //	@Test
 //	public void testGettingUserById(){
 //		Object entity=userDAO.getEntityById(User.class, user.getIdUser());
+//		logger.info("UserDAOTest:Test user load by id successfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -85,6 +87,7 @@ public class UserDAOTest {//extends TestStarter {
 //		user.setFirstName("testFirstName2");
 //		userDAO.updateEntity(user);
 //		final User updatedUser =(User) userDAO.getEntityById(User.class, user.getIdUser());	
+//		logger.info("UserDAOTest:Test user update successfully.");
 //		Assert.assertTrue(updatedUser.getFirstName().equals("testFirstName2"));
 //	}
 //
@@ -93,6 +96,7 @@ public class UserDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUserById(){
 //		userDAO.deleteEntityById(User.class, user.getIdUser());
+//		logger.info("UserDAOTest:Test user delete by id successfully.");
 //		Assert.assertNull(userDAO.getEntityById(User.class, user.getIdUser()));
 //	}
 //
@@ -101,6 +105,7 @@ public class UserDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteUser(){
 //		userDAO.deleteEntity(user);
+//		logger.info("UserDAOTest:Test user delete successfully.");
 //		Assert.assertNull(userDAO.getEntityById(User.class, user.getIdUser()));
 //	}
 //
@@ -110,6 +115,7 @@ public class UserDAOTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllUsers(){
 //		List<User> list = (List)userDAO.getAllEntity(User.class);
+//		logger.info("UserDAOTest:List of test user load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //
@@ -120,9 +126,9 @@ public class UserDAOTest {//extends TestStarter {
 //
 //		User userByEmail=userDAO.getUserByEmail(userCorespondence.getEmail());
 //		Assert.assertNotNull(userByEmail);
-//
 //		userByEmail=userDAO.getUserByEmail("same@gmail.com");
 //		Assert.assertNull(userByEmail);
+//		logger.info("UserDAOTest:User load by his email successfully.");
 //	}
 //	
 //	@Transactional
@@ -137,12 +143,14 @@ public class UserDAOTest {//extends TestStarter {
 //		String password=userSecurity.getPassword();
 //		Long idUser=userDAO.getIdUserByLoginPassword(login,password);
 //		Assert.assertNotNull(idUser);
-//
+//		
 //		//login and password not exist
 //		login="falseLogin";
 //		password="falsePassword";
 //		idUser=userDAO.getIdUserByLoginPassword(login,password);
 //		Assert.assertNull(idUser);
+//		
+//		logger.info("UserDAOTest:Id test user load by login and password successfully.");
 //	}
 //	
 //	@Transactional
@@ -163,6 +171,8 @@ public class UserDAOTest {//extends TestStarter {
 //		password="falsePassword";
 //		user=userDAO.getUserByLoginPassword(login,password);
 //		Assert.assertNull(user);
+//		
+//		logger.info("UserDAOTest:Test user load by login and password successfully.");
 //	}
 //		
 //	@Transactional
@@ -175,6 +185,8 @@ public class UserDAOTest {//extends TestStarter {
 //
 //		userList=userDAO.getListUserByLastName("sameLastName");
 //		Assert.assertTrue(userList.isEmpty());
+//		
+//		logger.info("UserDAOTest:List of test users load successfully.");
 //	}
 //	
 //	@Transactional
@@ -192,6 +204,8 @@ public class UserDAOTest {//extends TestStarter {
 //		String login2="falseLogin";
 //		String password2="falsePassword";
 //		Assert.assertFalse(userDAO.signInUserByLoginPassword(login2,password2));
+//		
+//		logger.info("UserDAOTest:Sign in user in system successfully completed.");
 //	}
 //	
 //	@Transactional
@@ -209,6 +223,7 @@ public class UserDAOTest {//extends TestStarter {
 //		idUser=(long)20;
 //		userList=userDAO.getUserLinksSortByRecency(idUser);
 //		Assert.assertTrue(userList.isEmpty());
+//		logger.info("UserDAOTest:List of user links sort by recency load successfully.");
 //	}
 //		
 //	@Transactional
@@ -224,6 +239,8 @@ public class UserDAOTest {//extends TestStarter {
 //		Assert.assertFalse(userCorespondenceList.isEmpty());
 //		userCorespondenceList=userDAO.getListUserCorespondences((long)20);
 //		Assert.assertTrue(userCorespondenceList.isEmpty());
+//		
+//		logger.info("UserDAOTest:List of user corespondence load successfully.");
 //	}
 //	
 //	@Transactional
@@ -234,5 +251,7 @@ public class UserDAOTest {//extends TestStarter {
 //		int expected=(int)3;
 //		int actual=userDAO.getCountOfUser();
 //		Assert.assertEquals(expected,actual);
+//		
+//		logger.info("UserDAOTest:Number of users in system load successfully.");
 //	}
 }

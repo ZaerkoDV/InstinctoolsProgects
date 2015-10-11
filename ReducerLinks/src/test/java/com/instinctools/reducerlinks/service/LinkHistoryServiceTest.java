@@ -58,6 +58,7 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testSaveLinkHistory(){
+//		logger.info("LinkHistoryServiceTest:Test link history save successfully.");
 //		Assert.assertNotNull(linkHistoryService
 //				.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory()));
 //	}
@@ -66,6 +67,8 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testGettingLinkHistoryById(){
+//		
+//		logger.info("LinkHistoryServiceTest:Test link history load by id successfully.");
 //		Object entity=linkHistoryService
 //				.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory());
 //		Assert.assertNotNull(entity);
@@ -79,7 +82,9 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //		linkHistory.setIpAddress("127.0.0.2");
 //		linkHistoryService.updateEntity(linkHistory);
 //		final LinkHistory updatedLinkHistory =(LinkHistory) linkHistoryService
-//				.getEntityById(LinkHistory.class,linkHistory.getIdLinkHistory());	
+//				.getEntityById(LinkHistory.class,linkHistory.getIdLinkHistory());
+//		
+//		logger.info("LinkHistoryServiceTest:Test link history update successfully.");
 //		Assert.assertTrue(updatedLinkHistory.getIpAddress().equals("127.0.0.2"));
 //	}
 //
@@ -87,7 +92,10 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testDeleteLinkHistoryById(){
+//		
 //		linkHistoryService.deleteEntityById(LinkHistory.class, linkHistory.getIdLinkHistory());
+//		
+//		logger.info("LinkHistoryServiceTest:Test link history delete by id successfully.");
 //		Assert.assertNull(linkHistoryService
 //				.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory()));
 //	}
@@ -95,8 +103,9 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //	@Transactional
 //	@Rollback(true)
 //	@Test
-//	public void testLinkHistoryEntity(){
+//	public void testDeleteLinkHistory(){
 //		linkHistoryService.deleteEntity(linkHistory);
+//		logger.info("LinkHistoryServiceTest:Test link history delete successfully.");
 //		Assert.assertNull(linkHistoryService
 //				.getEntityById(LinkHistory.class, linkHistory.getIdLinkHistory()));
 //	}
@@ -107,6 +116,7 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //	@Test
 //	public void testGettingAllLinkHistory(){
 //		List<Link> list = (List)linkHistoryService.getAllEntity(LinkHistory.class);
+//		logger.info("LinkHistoryServiceTest:List of test link history load successfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 //
@@ -117,6 +127,7 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //
 //		List<String> list;
 //		Long idUser;
+//		logger.info("LinkHistoryServiceTest:List of ip addreses for user load successfully.");
 //
 //		idUser=linkHistory.getLink().getUser().getIdUser();
 //		list=linkHistoryService.getListIpAddressForUser(idUser);
@@ -134,6 +145,8 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //
 //		List<LinkHistory> list;
 //		Long idUser;
+//		logger.info("LinkHistoryServiceTest:List of test link history"
+//				+ " for user load successfully.");
 //
 //		idUser=linkHistory.getLink().getUser().getIdUser();
 //		list=linkHistoryService.getListLinkHistoryForUser(idUser);
@@ -153,6 +166,7 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //		Long idUser=linkHistory.getLink().getUser().getIdUser();
 //		Date minDate=new Date(date.getTime()-100);
 //		Date maxDate=new Date(date.getTime());
+//		logger.info("LinkHistoryServiceTest:List of test link history(between date) for user load successfully.");
 //		
 //		list=linkHistoryService.getListLinkHistoryForUserBetweenDate(idUser, minDate, maxDate);
 //		Assert.assertFalse(list.isEmpty());
@@ -164,6 +178,7 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //	public void testOnValidIpAddress(){
 //		
 //		Boolean isValidIpAddress;
+//		logger.info("LinkHistoryServiceTest:Cheack ip addrese on valid value completed.");
 //		
 //		isValidIpAddress=linkHistoryService.isValidIpAddress(linkHistory.getIpAddress());
 //		Assert.assertTrue(isValidIpAddress);
@@ -171,5 +186,4 @@ public class LinkHistoryServiceTest {//extends TestStarter {
 //		isValidIpAddress=linkHistoryService.isValidIpAddress("256.255.255.255");
 //		Assert.assertFalse(isValidIpAddress);
 //	}
-
 }

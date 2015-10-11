@@ -55,7 +55,7 @@ public class CommonEntityDAOTest {//extends TestStarter {
 //	@Rollback(true)
 //	@Test
 //	public void testSaveEntity(){
-//		
+//		logger.info("EntityDAOTest:Test entity save sucessfully.");
 //		Assert.assertNotNull(commonEntityDAO.getEntityById(User.class, user.getIdUser()));
 //	}
 //
@@ -64,6 +64,7 @@ public class CommonEntityDAOTest {//extends TestStarter {
 //	@Test
 //	public void testGettingEntityById(){
 //		Object entity=commonEntityDAO.getEntityById(User.class, user.getIdUser());
+//		logger.info("EntityDAOTest:Test entity loaded sucessfully.");
 //		Assert.assertNotNull(entity);
 //	}
 //
@@ -74,8 +75,9 @@ public class CommonEntityDAOTest {//extends TestStarter {
 //
 //		user.setFirstName("testFirstName2");
 //		commonEntityDAO.updateEntity(user);
-//
+//		
 //		final User updatedUser =(User) commonEntityDAO.getEntityById(User.class, user.getIdUser());	
+//		logger.info("EntityDAOTest:Test entity update sucessfully.");
 //		Assert.assertTrue(updatedUser.getFirstName().equals("testFirstName2"));
 //	}
 //
@@ -84,6 +86,7 @@ public class CommonEntityDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteEntityById(){
 //		commonEntityDAO.deleteEntityById(User.class, user.getIdUser());
+//		logger.info("EntityDAOTest:Test entity delete by id sucessfully.");
 //		Assert.assertNull(commonEntityDAO.getEntityById(User.class, user.getIdUser()));
 //	}
 //	
@@ -93,15 +96,17 @@ public class CommonEntityDAOTest {//extends TestStarter {
 //	@Test
 //	public void testDeleteEntity(){
 //		commonEntityDAO.deleteEntity(user);
+//		logger.info("EntityDAOTest:Test entity delete sucessfully.");
 //		Assert.assertNull(commonEntityDAO.getEntityById(User.class, user.getIdUser()));
 //	}
 //	
+//	@SuppressWarnings("unchecked")
 //	@Transactional
 //	@Rollback(true)
 //	@Test
 //	public void testGettingAllEntity(){
 //		List<User> list = (List)commonEntityDAO.getAllEntity(User.class);
-//		
+//		logger.info("EntityDAOTest:List test entity loaded sucessfully.");
 //		Assert.assertFalse(list.isEmpty());
 //	}
 }

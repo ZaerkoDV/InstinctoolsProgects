@@ -6,7 +6,6 @@ package com.instinctools.reducerlinks.dao.impl;
 import javax.persistence.NonUniqueResultException;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,13 +34,18 @@ public class UserCorespondenceDAOImpl extends CommonEntityDAOImpl implements Use
 		try {
 			if(!criteria.uniqueResult().equals(null)){
 				isUnique = false;
+				logger.info("UserCorespondenceDAO:User email is not unique.");
 			}else{
 				isUnique = true;
+				logger.info("UserCorespondenceDAO:User email is unique.");
 			}
 		}catch (NullPointerException e){
 			isUnique = true;
+			logger.info("UserCorespondenceDAO:User email is unique.");
+			
 		}catch (NonUniqueResultException e) {
 			isUnique=false;
+			logger.info("UserCorespondenceDAO:User email is not unique.");
 		}
 		return isUnique;
 	}
