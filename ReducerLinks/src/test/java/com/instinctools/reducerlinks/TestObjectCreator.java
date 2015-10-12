@@ -1,5 +1,9 @@
 /**
+ * @package com.expositds.servicestationmanagementsystem
  * 
+ * Packages located in the directory /src/test/java contains classes which exercise 
+ * testing dao and service layer by mvc architecture.Classes used for test junit 
+ * framework.  
  */
 package com.instinctools.reducerlinks;
 
@@ -20,8 +24,18 @@ import com.instinctools.reducerlinks.model.UserCorespondence;
 import com.instinctools.reducerlinks.model.UserSecurity;
 
 /**
- * @author Zaerko_DV
- *
+ * This class are general for all test classes. All test classes use class TestObjectCreator for
+ * create new test objects and delete after using.Class contain set of methods which return test
+ * object and create object which need for creating. Also class contain methods which give right
+ * delete test object after test.
+ * 
+ * @see org.junit
+ * @see org.springframework.test
+ * @see org.slf4j
+ * @see org.springframework.stereotype.Component
+ * 
+ * @version 1.0 03.10.2015
+ * @author Zaerko Denis
  */
 @Component(value="testObjectCreator")
 public class TestObjectCreator {
