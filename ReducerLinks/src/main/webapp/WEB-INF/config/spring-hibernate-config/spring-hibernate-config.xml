@@ -19,7 +19,7 @@
 	<mvc:annotation-driven/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	
+	<!--
  	<beans:bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 	
@@ -27,7 +27,18 @@
 		<beans:property name="basename" value="messages" />
 		<beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
-	
+	-->
+	<beans:bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <beans:property name="resourceLoaderPath" value="/views/"/>
+    </beans:bean>
+
+    <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <beans:property name="cache" value="true"/>
+        <beans:property name="prefix" value=""/>
+        <beans:property name="suffix" value=".html"/>
+        <beans:property name="exposeSpringMacroHelpers" value="true"/>
+    </beans:bean>
+
 
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"	destroy-method="close">
 		<beans:property name="driverClassName" value="org.postgresql.Driver" />
@@ -117,6 +128,7 @@
 
 
 	<context:annotation-config/>
+	
 	<context:component-scan base-package="com.instinctools.reducerlinks">
 		<context:include-filter type="regex" expression="com.instinctools.reducerlinks.*"/>	
 		<context:include-filter type="regex" expression="com.instinctools.reducerlinks.dao.*"/>

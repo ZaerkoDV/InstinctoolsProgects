@@ -1,31 +1,29 @@
 var ReducerLinks = {};
 
-var App = angular.module('ReducerLinks', ['ReducerLinks.filters', 'ReducerLinks.services', 'ReducerLinks.directives']);
+var App = angular.module('ReducerLinks', ['ReducerLinks.filters', 'ReducerLinks.services', 'ReducerLinks.directives','ngRoute']);
 App.config(['$routeProvider', function($routeProvider) {
 
-	$routeProvider.when('/index', {
+	$routeProvider.when('/', {
 		 templateUrl: '/index',
-		 controller: 'IndexController'
+		 controller: IndexController
 	 });
 	
 	 $routeProvider.when('/link', {
 		 templateUrl: 'link/links',
-		 controller: 'LinkController'
+		 controller: LinkController
 	 });
 	 
 	 $routeProvider.when('/user/signUp', {
-		 templateUrl: 'user/signUp',
-		 controller: 'UserController'
+		 templateUrl: '/user/signUp',
+		 controller: UserController
 	 });
 	 
 	 $routeProvider.when('/user/signIn', {
 		    templateUrl: 'user/signIn',
-		    controller: 'UserController'
+		    controller: UserController
 	 });
 	 
-    $routeProvider.otherwise({
-    	redirectTo: '/index'
-    });
+	 $routeProvider.otherwise({redirectTo: '/index'});
 }]);
 
 

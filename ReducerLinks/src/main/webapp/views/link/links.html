@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><!--ng-app='ReducerLinks'  -->
+<head>
+<title>Links</title>
+</head>
+<body>
+<!--<div ng-controller="LinkController">-->
+ 
+	<table class="table table-bordered table-striped" ng-show="links.length > 0">
+    <thead>
+        <tr>
+            <th style="text-align: center;">Id</th>
+            <th style="text-align: center;">Tag</th>
+            <th style="text-align: center;">Comment</th>
+            <th style="text-align: center;">URL</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="link in links">
+            <td>{{link.idLink}}</td>
+            <td>{{link.tag}}</td>
+            <td>{{link.comment}}</td>
+            <td>{{link.shortUrl}}</td>
+        </tr>
+    </tbody>
+	</table>
+
+</body>
+</html>

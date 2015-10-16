@@ -37,7 +37,7 @@ import com.instinctools.reducerlinks.model.UserSecurity;
  * @version 1.0 03.10.2015
  * @author Zaerko Denis
  */
-@Component(value="testObjectCreator")
+@Component//(value="testObjectCreator")
 public class TestObjectCreator {
 
 	private static final Logger logger = LoggerFactory.getLogger(TestObjectCreator.class);

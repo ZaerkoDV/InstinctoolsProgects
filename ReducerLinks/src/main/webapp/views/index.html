@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="ReducerLinks" >
+<head>
+	<meta charset="utf-8">
+    <title>Index</title>
+	<link rel="stylesheet" href="resources/css/app.css"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+<style>
+
+</style>
+</head>
+<body>
+
+	<div ng-view></div>
+  	<ul class="nav navbar-nav"> 
+  		<li><a href="link/links">All Links</a></li>
+		<li><a href="user/signUp">Sign Up</a></li>
+   </ul> 
+
+      
+	<script src="resources/js/lib/angular/angular.js"></script>
+	<script src="resources/js/lib/angular/angular-route.js"></script>
+	<script src="resources/js/app.js"></script>
+	<script src="resources/js/controllers/IndexController.js"></script>
+	<script src="resources/js/controllers/UserController.js"></script>
+	<script src="resources/js/controllers/AdminController.js"></script>
+	<script src="resources/js/controllers/LinkController.js"></script>
+	<script src="resources/js/services.js"></script>
+	<script src="resources/js/filters.js"></script>
+	<script src="resources/js/directives.js"></script>
+  </body>
+</html>

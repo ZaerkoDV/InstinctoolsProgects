@@ -109,9 +109,11 @@ public class CommonEntityDAOImpl extends HibernateDaoSupport implements CommonEn
 				.createCriteria(entityClass);	
 		criteria.setMaxResults(20);
 		criteria.setFirstResult(0);
+		
 		try{
 			logger.info("EntityDAO:List entity loaded successfully.");
 			return criteria.list();
+			
 		}catch(NullPointerException e){
 			logger.info("EntityDAO:List entity loaded but is empty.");
 			return Collections.emptyList();
