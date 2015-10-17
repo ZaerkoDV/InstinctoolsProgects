@@ -1,12 +1,8 @@
+'use strict';
+
 var ReducerLinks = {};
-
-var App = angular.module('ReducerLinks', ['ReducerLinks.filters', 'ReducerLinks.services', 'ReducerLinks.directives','ngRoute']);
-App.config(['$routeProvider', function($routeProvider) {
-
-	$routeProvider.when('/', {
-		 templateUrl: '/index',
-		 controller: IndexController
-	 });
+var App = angular.module('ReducerLinks', ['ngRoute']);
+App.config(function($routeProvider) {//'$routeProvider',
 	
 	 $routeProvider.when('/link', {
 		 templateUrl: 'link/links',
@@ -14,7 +10,7 @@ App.config(['$routeProvider', function($routeProvider) {
 	 });
 	 
 	 $routeProvider.when('/user/signUp', {
-		 templateUrl: '/user/signUp',
+		 templateUrl: 'user/signUp',
 		 controller: UserController
 	 });
 	 
@@ -23,8 +19,8 @@ App.config(['$routeProvider', function($routeProvider) {
 		    controller: UserController
 	 });
 	 
-	 $routeProvider.otherwise({redirectTo: '/index'});
-}]);
+	 $routeProvider.otherwise({redirectTo: '/'});
+});
 
 
 //var App={};

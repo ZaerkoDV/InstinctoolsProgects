@@ -33,13 +33,13 @@ public class LinkController {
 		this.linkService = linkService;
 	}
 	
-	@RequestMapping(value="/links", method= RequestMethod.GET)
+	@RequestMapping("/links")//value="/links",
 	public String getLinksPage(ModelMap modelMap) {
 		return "link/links";
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping("linkslist.json")
+	@RequestMapping("/linkslist.json")
 	public @ResponseBody List<Link> getLinkList(){
 		List<Link> allLinks=(List)linkService.getAllEntity(Link.class);
 		return allLinks;

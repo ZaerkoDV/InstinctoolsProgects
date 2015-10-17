@@ -1,12 +1,14 @@
+'use strict';
 
-angular.module('ReducerLinks').controller('LinkController', ['$scope', '$http', function ($scope, $http) {
 
+//angular.module('ReducerLinks').controller('LinkController', ['$scope', '$http', function ($scope, $http) {
+var LinkController = function($scope, $http) {
 	$scope.links = [];
-	$http.get('linkslist.json').success(function(list){
+	$http.get('link/linkslist.json').success(function(list){
 		$scope.links =list;
 	});
-
-}]);
+};
+//}]);
 
 
 //angular.module('ReducerLinks').controller('LinkController', ['$scope', '$http', function ($scope, $http) {

@@ -18,8 +18,8 @@ public class IndexController {
 
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 		
-	@RequestMapping(value ="/index", method = RequestMethod.GET)
+	@RequestMapping(value ="/", method = RequestMethod.GET)
 	public String getIndexPage() {
-		return "/index";
+		return "index";
 	}
 }
