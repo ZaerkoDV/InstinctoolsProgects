@@ -1,21 +1,96 @@
+<style>
+   #wrap {
+   width:auto;
+   margin:0 auto;
+}
+#left_col {
+   float:left;
+   width:50px;
+}
+#right_col {
+   float:right;
+   width:1350px;
+}
+</style>
 
-
-<table class="table table-bordered table-striped"
-	ng-show="links.length > 0">
-	<thead>
-		<tr>
-			<th style="text-align: center;">Id</th>
-			<th style="text-align: center;">Tag</th>
-			<th style="text-align: center;">Comment</th>
-			<th style="text-align: center;">URL</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="link in links">
-			<td>{{link.idLink}}</td>
-			<td>{{link.tag}}</td>
-			<td>{{link.comment}}</td>
-			<td>{{link.shortUrl}}</td>
-		</tr>
-	</tbody>
-</table>
+<title>links</title>
+<div class="container ng-scope" style="padding-left: 15px; width: 1500px;">
+  <div id="wrap">
+  <!--
+	  <div id="left_col">
+	   <ul class="pager">
+		  <li><a href="#/link">Previous</a></li>
+		</ul>
+	  </div> 
+  -->
+	  <div id="right_col">
+		<!--all link  -->
+		<div ng-show="showLinkTbl">
+			<table class="table table-hover" ng-show="links.length > 0 ">
+				<thead>
+					<tr style="text-align: center;">
+						<th><h3>Link Info</h3></th>
+						<th><h3>URL</h3></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="link in links">
+						<td>
+						  	Tag:<button type="button" class="btn btn-link" ng-click="searchTag(link.tag)">{{link.tag}}<span class="badge">1</span></button><br>
+						  	Frome:<button type="button" class="btn btn-link"
+						  		 ng-click="searchAuthor(link.user.idUser)">{{link.user.lastName}}_{{link.user.firstName}}<span class="badge">2</span></button><br>
+							Comment:{{link.comment}}
+						</td>
+						<td>
+							<a href="link.fullUrl">{{link.shortUrl}}<span class="badge"></span></a><br>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--tag search  -->
+		<table class="table table-hover" ng-show="linksByTag.length > 0">
+			<thead>
+				<tr style="text-align: center;">
+					<th><h3>Result search of tags</h3></th>
+				</tr>
+			</thead>
+			<tbody>
+			   <tr ng-repeat="link in linksByTag">
+					<td>
+					  	Tag:<button type="button" class="btn btn-link" ng-click="searchTag(link.tag)">{{link.tag}}<span class="badge">1</span></button><br>
+					  	Frome:<button type="button" class="btn btn-link"
+					  	 ng-click="searchAuthor(link.user.idUser)">{{link.user.lastName}}_{{link.user.firstName}}<span class="badge">2</span></button><br>
+						Comment:{{link.comment}}	
+					</td>
+					<td>
+						<a href="link.fullUrl">{{link.shortUrl}}<span class="badge"></span></a><br>
+					</td>
+				</tr>
+			</tbody>	
+		</table>
+		<!--author search-->
+		<table class="table table-hover" ng-show="linksByAuthor.length > 0">
+			<thead>
+				<tr style="text-align: center;">
+					<th><h3>Result search of authors</h3></th>
+				</tr>
+			</thead>
+			<tbody>
+			   <tr ng-repeat="link in linksByAuthor">
+					<td>
+					  	Tag:<button type="button" class="btn btn-link" ng-click="searchTag(link.tag)">{{link.tag}}<span class="badge">1</span></button><br>
+					  	Frome:<button type="button" class="btn btn-link"
+					  	 ng-click="searchAuthor(link.user.idUser)">{{link.user.lastName}}_{{link.user.firstName}}<span class="badge">2</span></button><br>
+						Comment:{{link.comment}}
+					</td>
+					<td>
+						<a href="link.fullUrl">{{link.shortUrl}}<span class="badge"></span></a><br>
+					</td>
+				</tr>
+			</tbody>	
+		</table>
+	  </div>	
+	
+  </div>
+</div>

@@ -9,6 +9,17 @@ App.config(function($routeProvider) {//'$routeProvider',
 		 controller: LinkController
 	 });
 	 
+
+	 $routeProvider.when('/tag', {
+		 templateUrl: 'link/tags',
+		 controller: LinkController
+	 });
+	 
+	 $routeProvider.when('/searchtag', {
+		 templateUrl: 'link/searchTag',
+		 controller: LinkController
+	 });
+	 
 	 $routeProvider.when('/user/signUp', {
 		 templateUrl: 'user/signUp',
 		 controller: UserController

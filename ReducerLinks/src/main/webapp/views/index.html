@@ -2,24 +2,66 @@
 <html lang="en" ng-app="ReducerLinks" >
 <head>
 	<meta charset="utf-8">
-    <title>Index</title>
+    <title>Reducer Link Service</title>
 	<link rel="stylesheet" href="resources/css/app.css"/>
-    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.css" />
+    
+ <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ -->
+  	
 <style>
+
+#bg {
+        position:fixed;
+        top:-50%;
+        left:-50%;
+        width:200%;
+        height:200%;
+}
+
+#bg img {
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+        min-width:50%;
+        min-height:50%;       
+}
+
 
 </style>
 </head>
 <body>
-
-  	<ul class="nav navbar-nav"> 
-  		<li><a href="#/link">All Links</a></li>
-		<li><a href="#/user/signUp">Sign Up</a></li>
-    </ul> 
+	<!--<div id="bg"><img src="resources/bootstrap/img/title-image.jpg"  alt="" ></div>-->
+ 
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="/">Reducer Link Service</a>
+	    </div>
+	    <div>
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">HOME</a></li>
+	        <li><a href="#/link">All LINKS</a></li>
+	        <li><a href="#/tag">TAGS</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#/user/signUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	        <li><a href="#/user/signIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+   
    
 	<div ng-view></div>
 
 
-      
+
+
+
 	<script src="resources/js/lib/angular/angular.js"></script>
 	<script src="resources/js/lib/angular/angular-route.js"></script>
 	<script src="resources/js/app.js"></script>
