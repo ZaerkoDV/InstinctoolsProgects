@@ -269,4 +269,16 @@ public class UserServiceTest {//extends TestStarter {
 //		Assert.assertEquals(expected,actual);
 //		logger.info("UserServiceTest:Number of users in system load.");
 //	}	
+//	
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testGetingUserRoleByUserId(){
+//
+//		String actual=userService.getUserRoleByUserId(user.getIdUser());
+//		String expected="user";
+//		Assert.assertEquals(expected,actual);
+//		
+//		logger.info("UserServiceTest:User role download successfully.");
+//	}
 }

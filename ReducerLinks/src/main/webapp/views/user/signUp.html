@@ -1,29 +1,93 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>SignUp</title>
-</head>
-<body>
+<style>
 
-  <form class="form-horizontal">
-    <div class="control-group">
-        <label class="control-label" for="inputFirstName">First Name</label>
-        <div class="controls">
-            <input type="text" id="inputFirstName" ng-model="user.firstName" placeholder="First Name" required min="2">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputLastName">Last Name</label>
-        <div class="controls">
-            <input type="text" id="inputLastName" ng-model="user.lastName" placeholder="Last Name" required min="2">
-        </div>
-    </div>
-    <div class="controls">  
-         <button type="button" class="btn btn-primary" ng-disabled="!user.name || !user.lastName" 
-         ng-click="addUser(user)">Add</button>
-    </div>
-   </form>
+ .well {
+  top: 0px;
+  left: 0px;
+  margin-top: 0px;
+  margin-left: 50px;
+}
 
-</body>
-</html>
+.error {
+  color:red;
+}
+.error-border {
+  border: solid 2px red;
+}
+
+</style>
+
+
+<title>SignUp</title>
+
+  <div class="col-lg-6 col-lg-offset-2">
+	<div class="well">
+	    <div class="container">
+		    <div class="row">
+			   <div class="col-lg-6">
+				<form name="myForm" class="form-horizontal">
+					<fieldset>
+						<legend>Registraction form</legend>
+						
+					    <div class="form-group">
+					        <label for="userFirstName" class="col-lg-3 control-label">First Name</label>
+					        <div class="col-lg-8">
+					            <input type="text" class="form-control" id="userFirstName" ng-model="userSecurity.user.firstName" placeholder="First Name" required min="2">
+					        </div>
+					    </div>
+					    <div class="form-group">
+					        <label for="userLastName" class="col-lg-3 control-label">Last Name</label>
+					        <div class="col-lg-8">
+					            <input type="text" class="form-control" id="userLastName" ng-model="userSecurity.user.lastName" placeholder="Last Name" required min="2">
+					        </div>
+					    </div>
+					    <div class="form-group">
+					        <label for="userMiddleName" class="col-lg-3 control-label">Middle Name</label>
+					        <div class="col-lg-8">
+					            <input type="text" class="form-control" id="userMiddleName" ng-model="userSecurity.user.middleName" placeholder="Middle Name" required min="2">
+					        </div>
+					    </div>
+					
+						 <div class="form-group">
+							<label for="birthday" class="col-lg-3 control-label">Date of birth</label>
+							<div class="date form_date col-lg-8" data-date-format="dd/mm/yyyy" data-date-viewmode="years">
+								<input type="text" class="form-control" id="birthday" ng-model="userSecurity.user.birthday" 
+								 placeholder="Example 12/11/2013" />
+							</div>
+						</div>			         			
+						<div class="form-group">
+							<label for="userLogin" class="col-lg-3 control-label">Login</label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" id="userLogin" ng-model="userSecurity.login" placeholder="Login"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userPassword" class="col-lg-3 control-label">Password</label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" id="userPassword" ng-model="userSecurity.password" placeholder="Password" />
+							</div>
+						</div>
+					
+					    <!--
+					    <div class="controls">  
+					         <button type="button" class="btn btn-primary" ng-disabled="!user.firstName || !user.lastName || !user.birthday 
+					         || !userCorespodence.email || !userSecurity.login || !userSecurity.password" ng-click="saveNewUser(user,userCorespodence,userSecurity)">Save</button>
+					    </div>
+					    -->
+					     <div class="controls">
+					     	<button type="button" class="btn btn-primary" ng-click="addUser(userSecurity)">Save</button>
+					     </div>
+					 </fieldset>
+				</form>
+	          </div>
+	        </div>
+	     </div>
+      </div>
+   </div>
+	
+	<script src="resources/js/lib/jquery.min.js"/></script>
+	
+   <script>
+		$(function() {
+			$('birthday').datepicker();
+		});
+	</script>

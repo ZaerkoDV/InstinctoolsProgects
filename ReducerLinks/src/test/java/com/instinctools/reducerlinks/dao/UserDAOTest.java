@@ -272,4 +272,16 @@ public class UserDAOTest {//extends TestStarter {
 //		
 //		logger.info("UserDAOTest:Number of users in system load successfully.");
 //	}
+//	
+//	@Transactional
+//	@Rollback(true)
+//	@Test
+//	public void testGetingUserRoleByUserId(){
+//
+//		String actual=userDAO.getUserRoleByUserId(user.getIdUser());
+//		String expected="user";
+//		Assert.assertEquals(expected,actual);
+//		
+//		logger.info("UserDAOTest:User role download successfully.");
+//	}
 }

@@ -238,4 +238,22 @@ public class UserDAOImpl extends CommonEntityDAOImpl implements UserDAO {
 		return count;
 	}
 
+	@Transactional
+	public String getUserRoleByUserId(Long idUser){
+		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
+				.createCriteria(UserSecurity.class);
+		criteria.setProjection(Projections.property("role"));
+		criteria.createAlias("user", "u");
+		criteria.add(Restrictions.eq("u.idUser", idUser));
+		
+		String role;
+		try {
+			role=(String)criteria.uniqueResult();
+			logger.info("UserDAO:User role by user id loaded.");
+		}catch (NullPointerException e){
+			role = null;
+			logger.info("UserDAO:User role by user id not loaded.");
+		}
+		return role;
+	}
 }

@@ -39,4 +39,5 @@ public interface UserService extends CommonEntityService {
 	public List<Link> getUserLinksSortByRecency(Long idUser);
 	public List<UserCorespondence> getListUserCorespondences(Long idUser);
 	public int getCountOfUser();
+	public String getUserRoleByUserId(Long idUser);
 }

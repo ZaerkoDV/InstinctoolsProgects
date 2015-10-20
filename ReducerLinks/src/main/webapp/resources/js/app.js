@@ -1,7 +1,7 @@
 'use strict';
 
 var ReducerLinks = {};
-var App = angular.module('ReducerLinks', ['ngRoute']);
+var App = angular.module('ReducerLinks',['ngRoute']);
 App.config(function($routeProvider) {//'$routeProvider',
 	
 	 $routeProvider.when('/link', {
@@ -9,16 +9,25 @@ App.config(function($routeProvider) {//'$routeProvider',
 		 controller: LinkController
 	 });
 	 
-
 	 $routeProvider.when('/tag', {
 		 templateUrl: 'link/tags',
 		 controller: LinkController
 	 });
 	 
-	 $routeProvider.when('/searchtag', {
-		 templateUrl: 'link/searchTag',
+	 $routeProvider.when('/link/userLinks', {
+		 templateUrl: 'link/userLinks',
 		 controller: LinkController
 	 });
+	 
+	 $routeProvider.when('/link/newLink', {
+		 templateUrl: 'link/newLink',
+		 controller: LinkController
+	 });
+	 
+//	 $routeProvider.when('/searchtag', {
+//		 templateUrl: 'link/searchTag',
+//		 controller: LinkController
+//	 });
 	 
 	 $routeProvider.when('/user/signUp', {
 		 templateUrl: 'user/signUp',
@@ -29,6 +38,26 @@ App.config(function($routeProvider) {//'$routeProvider',
 		    templateUrl: 'user/signIn',
 		    controller: UserController
 	 });
+	 
+	 $routeProvider.when('/user/userAccount', {
+		    templateUrl: 'user/userAccount',
+		    controller: UserController
+	 });
+	 
+	 $routeProvider.when('/user/addCorespondence', {
+		    templateUrl: 'user/addCorespondence',
+		    controller: UserController
+	 });
+	 
+	 
+//	 $routeProvider.when('/admin/adminAccount', {
+//		    templateUrl: 'admin/adminAccount',
+//		    controller: AdminController
+//	 });
+	 
+	 
+	 
+	 
 	 
 	 $routeProvider.otherwise({redirectTo: '/'});
 });

@@ -43,7 +43,25 @@ var LinkController = function($scope, $http) {
 		});
 	};
 
-
+//	//save new link
+//	$scope.saveLink=function(linkHistory){
+//		$http.post('link/saveLink', linkHistory).success(function() {
+//			$scope.getRedirectTo(id);
+//		}).error(function() {
+//			$scope.setError('Could not save');
+//		});
+//	};
+//	
+//	//get all user links
+//	$scope.getAllUserLink=function(id){
+//		$http.post('link/saveLink', linkHistory).success(function() {
+//			$scope.getRedirectTo(id);
+//		}).error(function() {
+//			$scope.setError('Could not load');
+//		});
+//	};
+	
+	
 };
 
 

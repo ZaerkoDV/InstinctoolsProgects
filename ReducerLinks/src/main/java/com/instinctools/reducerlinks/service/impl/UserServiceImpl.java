@@ -14,7 +14,9 @@
 package com.instinctools.reducerlinks.service.impl;
 
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -95,5 +97,10 @@ public class UserServiceImpl extends CommonEntityServiceImpl implements UserServ
 	public int getCountOfUser(){
 		logger.info("UserService:Number of user in system load successfully.");
 		return userDAO.getCountOfUser();
+	}
+	
+	public String getUserRoleByUserId(Long idUser){
+		logger.info("UserService:User role by user id loaded.");
+		return userDAO.getUserRoleByUserId(idUser);
 	}
 }
