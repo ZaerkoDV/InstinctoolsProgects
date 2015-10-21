@@ -42,7 +42,7 @@
 							Comment:{{link.comment}}
 						</td>
 						<td>
-							<a href="link.fullUrl">{{link.shortUrl}}<span class="badge"></span></a><br>
+							<a href="{{link.fullUrl}}" ng-click="increaseNumberLinkVisits(link.idLink)">{{link.shortUrl}}</a><br>
 						</td>
 					</tr>
 				</tbody>

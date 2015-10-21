@@ -30,7 +30,7 @@ var UserController = function($scope, $http) {
 	$scope.addUserCorespondence = function(userCorespondence){
 		$http.post('user/addUserCorespondence', userCorespondence).success(function() {
 		}).error(function() {
-			$scope.setError('Could not save userCorespondence');
+			$scope.message('Could not save user corespondence because system error');
 		});
 	};
 	

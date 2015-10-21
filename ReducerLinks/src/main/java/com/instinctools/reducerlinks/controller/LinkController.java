@@ -84,14 +84,19 @@ public class LinkController {
 		return userService.getUserLinksSortByRecency(idUser);
 	}
 
+	@RequestMapping(value = "/increaseNumberLinkVisits/{idLink}", method = RequestMethod.GET)
+	public @ResponseBody void increaseVisit(@PathVariable("idLink") Long idLink) {
+		linkService.increaseNumberLinkVisits(idLink);
+	}
 	
-	//как образатывать запрос на другом контроллере	
+	
+	//как образатывать запрос на другом контроллере	и передать id
 	@RequestMapping("/newLink")
 	public String getNewLinkPage(ModelMap modelMap) {
 		return "link/newLink";
 	}
  	
-	@RequestMapping(value="/newLink", method = RequestMethod.POST)
+	@RequestMapping(value="/addLink", method = RequestMethod.POST)
 	public @ResponseBody void saveLink(@RequestBody LinkHistory linkHistory) {
 
 		Long idUser=linkHistory.getLink().getUser().getIdUser();
@@ -99,7 +104,7 @@ public class LinkController {
 		
 		//save link
 		Link link=linkHistory.getLink();
-		String shortUrl=linkService.reduceURL(link.getFullUrl());
+		String shortUrl=null;//linkService.reduceURL(link.getFullUrl());
 		link.setShortUrl(shortUrl);
 		link.setUser(user);
 		linkService.saveEntity(link);
@@ -116,5 +121,10 @@ public class LinkController {
 	public String getUserLinksPage(ModelMap modelMap) {
 		return "link/userLinks";
 	}
-	
+
+	@RequestMapping(value = "/getUserLinks/{idUser}/userLinks.json", method = RequestMethod.GET)
+	public @ResponseBody List<LinkHistory> getUserLinks(@PathVariable("idUser") Long idUser) {	
+		return linkHistoryService.getListLinkHistoryForUser(idUser);
+
+	}
 }

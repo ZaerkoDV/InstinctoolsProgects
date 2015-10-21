@@ -24,11 +24,6 @@ App.config(function($routeProvider) {//'$routeProvider',
 		 controller: LinkController
 	 });
 	 
-//	 $routeProvider.when('/searchtag', {
-//		 templateUrl: 'link/searchTag',
-//		 controller: LinkController
-//	 });
-	 
 	 $routeProvider.when('/user/signUp', {
 		 templateUrl: 'user/signUp',
 		 controller: UserController
@@ -57,7 +52,10 @@ App.config(function($routeProvider) {//'$routeProvider',
 	 
 	 
 	 
-	 
+//	 $routeProvider.when('/searchtag', {
+//	 templateUrl: 'link/searchTag',
+//	 controller: LinkController
+// });
 	 
 	 $routeProvider.otherwise({redirectTo: '/'});
 });

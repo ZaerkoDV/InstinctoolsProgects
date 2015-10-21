@@ -67,15 +67,20 @@
 							</div>
 						</div>
 					
-					    <!--
 					    <div class="controls">  
-					         <button type="button" class="btn btn-primary" ng-disabled="!user.firstName || !user.lastName || !user.birthday 
-					         || !userCorespodence.email || !userSecurity.login || !userSecurity.password" ng-click="saveNewUser(user,userCorespodence,userSecurity)">Save</button>
+					         <button type="button" class="btn btn-primary"
+					          ng-disabled="!userSecurity.user.firstName ||
+					           		!userSecurity.user.lastName ||
+					            	<!--!userSecurity.user.birthday ||-->
+					             	!userSecurity.login ||
+					             	!userSecurity.password" 
+					         ng-click="addUser(userSecurity)">Save</button>
 					    </div>
-					    -->
+					   <!--
 					     <div class="controls">
 					     	<button type="button" class="btn btn-primary" ng-click="addUser(userSecurity)">Save</button>
 					     </div>
+					    -->
 					 </fieldset>
 				</form>
 	          </div>
@@ -83,11 +88,3 @@
 	     </div>
       </div>
    </div>
-	
-	<script src="resources/js/lib/jquery.min.js"/></script>
-	
-   <script>
-		$(function() {
-			$('birthday').datepicker();
-		});
-	</script>

@@ -70,8 +70,15 @@ public class UserCorespondenceServiceImpl extends CommonEntityServiceImpl implem
 	
 	public Boolean isValidEmail(String email){
 		logger.info("UserCorespondenceService:Cheack email on valid value is completed.");
-		pattern = Pattern.compile(emailPattern);
-		matcher = pattern.matcher(email);
-		return matcher.matches();
+	
+		Boolean isValid;
+		try {
+			pattern = Pattern.compile(emailPattern);
+			matcher = pattern.matcher(email);
+			isValid=matcher.matches();
+		} catch (NullPointerException e) {
+			isValid=false;
+		}
+		return isValid;
 	}
 }

@@ -22,6 +22,7 @@ import com.instinctools.reducerlinks.model.User;
 import com.instinctools.reducerlinks.model.UserCorespondence;
 import com.instinctools.reducerlinks.model.UserSecurity;
 import com.instinctools.reducerlinks.service.LinkService;
+import com.instinctools.reducerlinks.service.UserCorespondenceService;
 import com.instinctools.reducerlinks.service.UserSecurityService;
 import com.instinctools.reducerlinks.service.UserService;
 
@@ -40,6 +41,10 @@ public class UserController {
 	@Inject
 	@Qualifier(value="userSecurityService")
 	private UserSecurityService userSecurityService;
+	
+	@Inject
+	@Qualifier(value="userCorespondenceService")
+	private UserCorespondenceService userCorespondenceService;
 
 	@Inject
 	@Qualifier(value="linkService")
@@ -53,10 +58,16 @@ public class UserController {
 		this.userSecurityService = userSecurityService;
 	}
 
+	public void setUserCorespondenceService(
+			UserCorespondenceService userCorespondenceService) {
+		this.userCorespondenceService = userCorespondenceService;
+	}
+	
 	public void setLinkService(LinkService linkService) {
 		this.linkService = linkService;
 	}
 
+	//registration date problem
 	@RequestMapping(value="/signUp", method = RequestMethod.GET)
 	public String getUserSignUpPage() {
 		return "user/signUp";
@@ -80,6 +91,7 @@ public class UserController {
 		}
 	}
 
+	//autorization
 	@RequestMapping(value="/signIn", method = RequestMethod.GET)
 	public String getUserSignInPage() {
 		return "user/signIn";
@@ -109,7 +121,7 @@ public class UserController {
 			return "/";	
 		}
 	}
-	
+//not worked	
 	@RequestMapping(value = "/userAccount", method = RequestMethod.GET)
 	public String getUserPage() {
 		return "user/userAccount";
@@ -122,9 +134,17 @@ public class UserController {
 	
 	@RequestMapping(value="/addUserCorespondence", method = RequestMethod.POST)
 	public @ResponseBody void saveCorespondence(@RequestBody UserCorespondence userCorespondence) {
-		User user = (User) userService.getEntityById(User.class, userCorespondence.getUser().getIdUser());
-		userCorespondence.setUser(user);
-	    userService.saveEntity(userCorespondence);
+		
+		String email=userCorespondence.getEmail();
+		Boolean unique=userCorespondenceService.isUniqueEmail(email);
+		Boolean valid=userCorespondenceService.isValidEmail(email);
+		if(unique && valid){
+			User user = (User) userService.getEntityById(User.class, userCorespondence.getUser().getIdUser());
+			userCorespondence.setUser(user);
+		    userService.saveEntity(userCorespondence);	
+		}else{
+			
+		}
 	}
 
 }

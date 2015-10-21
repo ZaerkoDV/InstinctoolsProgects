@@ -42,25 +42,37 @@ var LinkController = function($scope, $http) {
 			$scope.setError('Could not');
 		});
 	};
-
-//	//save new link
-//	$scope.saveLink=function(linkHistory){
-//		$http.post('link/saveLink', linkHistory).success(function() {
-//			$scope.getRedirectTo(id);
-//		}).error(function() {
-//			$scope.setError('Could not save');
-//		});
-//	};
-//	
-//	//get all user links
-//	$scope.getAllUserLink=function(id){
-//		$http.post('link/saveLink', linkHistory).success(function() {
-//			$scope.getRedirectTo(id);
-//		}).error(function() {
-//			$scope.setError('Could not load');
-//		});
-//	};
 	
+	//инкремент кликов по url
+	$scope.increaseNumberLinkVisits = function(idLink) {
+		$http.get('link/increaseNumberLinkVisits/'+idLink).success(function() {
+		}).error(function() {
+			$scope.setError('Could not increase number of link visits');
+		});
+	};
+	
+	
+	$scope.id=1708;
+	//save new link
+	$scope.addLink=function(linkHistory){
+		$http.post('link/addLink', linkHistory).success(function() {
+		}).error(function() {
+			$scope.setError('Could not save save');
+		});
+	};
+	
+	$scope.id=1708;
+	//get user links
+	$scope.getAllUserLink=function(id){
+		$http.get('link/getUserLinks/'+id+'/userLinks.json').success(function(links) {
+			$scope.linksHistory=links;
+			
+		}).error(function() {
+			$scope.setError('Could not load user link.');
+		});
+	};
+	
+		
 	
 };
 

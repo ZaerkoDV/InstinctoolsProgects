@@ -108,7 +108,7 @@ public class LinkServiceImpl extends CommonEntityServiceImpl implements LinkServ
 	public String reduceURL(String fullURL){
 
 		tinyURL tU = new tinyURL();
-		String shortURL;
+		String shortURL=null;
 		if(!fullURL.equals(null)){
 			shortURL=tU.getTinyURL(fullURL);
 			logger.info("LinkService:Operation of reducing full url completed.");
