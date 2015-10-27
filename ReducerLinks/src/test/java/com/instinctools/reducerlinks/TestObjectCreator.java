@@ -40,7 +40,7 @@ import com.instinctools.reducerlinks.model.UserSecurity;
 @Component(value="testObjectCreator")
 public class TestObjectCreator {
 
-	private static final Logger logger = LoggerFactory.getLogger(TestObjectCreator.class);
+	//private static final Logger logger = LoggerFactory.getLogger(TestObjectCreator.class);
 
 	@Inject
 	@Qualifier("commonEntityDAO")

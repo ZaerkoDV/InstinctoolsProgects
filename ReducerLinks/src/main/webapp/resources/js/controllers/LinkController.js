@@ -61,7 +61,7 @@ var LinkController = function($scope, $http) {
 		});
 	};
 	
-	$scope.id=1708;
+	//$scope.id=1708;
 	//get user links
 	$scope.getAllUserLink=function(id){
 		$http.get('link/getUserLinks/'+id+'/userLinks.json').success(function(links) {
