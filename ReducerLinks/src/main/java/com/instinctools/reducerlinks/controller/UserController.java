@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.instinctools.reducerlinks.model.Link;
+import com.instinctools.reducerlinks.model.LinkHistory;
 import com.instinctools.reducerlinks.model.User;
 import com.instinctools.reducerlinks.model.UserCorespondence;
 import com.instinctools.reducerlinks.model.UserSecurity;
+import com.instinctools.reducerlinks.service.LinkHistoryService;
 import com.instinctools.reducerlinks.service.LinkService;
 import com.instinctools.reducerlinks.service.UserCorespondenceService;
 import com.instinctools.reducerlinks.service.UserSecurityService;
@@ -49,6 +51,10 @@ public class UserController {
 	@Inject
 	@Qualifier(value="linkService")
 	private LinkService linkService;
+	
+	@Inject
+	@Qualifier(value="linkHistoryService")
+	private LinkHistoryService linkHistoryService;
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -67,6 +73,10 @@ public class UserController {
 		this.linkService = linkService;
 	}
 
+	public void setLinkHistoryService(LinkHistoryService linkHistoryService) {
+		this.linkHistoryService = linkHistoryService;
+	}
+	
 	//registration date problem
 	@RequestMapping(value="/signUp", method = RequestMethod.GET)
 	public String getUserSignUpPage() {
@@ -145,6 +155,13 @@ public class UserController {
 		}else{
 			
 		}
+	}
+	
+	@RequestMapping(value = "/getUserLinks/{idUser}/userLinks.json", method = RequestMethod.GET)
+	public @ResponseBody List<LinkHistory> getUserLinks(@PathVariable("idUser") Long idUser) {	
+		List<LinkHistory> linkHistory= linkHistoryService.getListLinkHistoryForUser(idUser);
+		return linkHistory;
+
 	}
 
 }

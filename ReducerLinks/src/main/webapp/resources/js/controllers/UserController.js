@@ -34,7 +34,16 @@ var UserController = function($scope, $http) {
 		});
 	};
 	
-	
+	//$scope.id=1708;
+	//get user links
+	$scope.getAllUserLink=function(id){
+		$http.get('user/getUserLinks/'+id+'/userLinks.json').success(function(links) {
+			$scope.linksHistory=links;
+			
+		}).error(function() {
+			$scope.setError('Could not load user link.');
+		});
+	};
 	
 	
 	

@@ -19,10 +19,9 @@ import java.net.Proxy;
 import java.net.URL;
 import java.util.List;
 
-//import javaQuery.j2ee.tinyURL;
 
+import javaQuery.j2ee.tinyURL;
 import javax.inject.Inject;
-
 import org.apache.commons.validator.UrlValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,18 +104,18 @@ public class LinkServiceImpl extends CommonEntityServiceImpl implements LinkServ
 		return resultCheckUrl;	
 	}
 
-//	public String reduceURL(String fullURL){
-//
-//		tinyURL tU = new tinyURL();
-//		String shortURL=null;
-//		if(!fullURL.equals(null)){
-//			shortURL=tU.getTinyURL(fullURL);
-//			logger.info("LinkService:Operation of reducing full url completed.");
-//		}else{
-//			throw new NullPointerException("Service:New link not saved.Link must not be null.");
-//		}
-//		return shortURL;
-//	}
+	public String reduceURL(String fullURL){
+
+		tinyURL tU = new tinyURL();
+		String shortURL=null;
+		if(!fullURL.equals(null)){
+			shortURL=tU.getTinyURL(fullURL);
+			logger.info("LinkService:Operation of reducing full url completed.");
+		}else{
+			throw new NullPointerException("Service:New link not saved.Link must not be null.");
+		}
+		return shortURL;
+	}
 
 	public String expandURL(String shortURL)  {
 		

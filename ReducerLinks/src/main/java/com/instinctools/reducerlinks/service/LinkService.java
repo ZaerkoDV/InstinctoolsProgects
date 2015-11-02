@@ -34,6 +34,6 @@ public interface LinkService extends CommonEntityService {
 	public Long increaseNumberLinkVisits(Long idLink);
 	public Long getNumberLinkVisits(Long idLink);
 	public Boolean isValidURL(String fullUrl);	
-	//public String reduceURL(String fullURL);
+	public String reduceURL(String fullURL);
 	public String expandURL(String shortURL);
 }

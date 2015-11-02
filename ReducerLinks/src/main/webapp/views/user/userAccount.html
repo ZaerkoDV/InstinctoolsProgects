@@ -14,27 +14,49 @@
 </style>
 
 <title>userAccount</title>
-<div class="container ng-scope" style="padding-left: 15px; width: 1500px;">
+<div><!-- class="container ng-scope" style="padding-left: 15px; width: 1500px;"  -->
   <div id="wrap">
-  
-  <div id="left_col">
-  </div>
+  <div id="left_col">  
+      <table class="table table-hover" ng-show="linksHistory.length > 0">
+		<thead>
+			<tr style="text-align: center;">
+				<th><h3>Result search of tags</h3></th>
+			</tr>
+		</thead>
+		<tbody>
+		   <tr ng-repeat="linkHistory in linksHistory">
+				<td>
+					Click info:<span class="badge">{{linkHistory.sumClick}}</span><br>
+					Last create: {{linkHistory.lastCreate| date}}<br>
+					Ip address:	{{linkHistory.ipAddress}}<br>
+				  	Tag:<button type="button" class="btn btn-link" 
+				  	ng-click="searchTag(linkHistory.link.tag)">{{linkHistory.link.tag}}<span class="badge"></span></button><br>
+				  	Comment:{{linkHistory.link.comment}}
+				  	
+				  	<button type="button" class="btn btn-link" 
+				  	ng-click="updateLink(linkHistory.idLinkHistory)">click to update..<span class="badge"></span></button>
+				  	<br>
+				</td>
+				<td>
+					<a href="link.fullUrl">{{link.shortUrl}}<span class="badge"></span></a><br>
+				</td>
+			</tr>
+		</tbody>
+	 </table>
+	</div>
   
    <div id="right_col">
-    <div class="rightmenu" style="width: 1100px;">
-	   <div class="col-md-3">
-	      <ul class="nav nav-pills nav-stacked">
-	        <li class="active"><a href="#/user/addCorespondence">My corespondence</a></li>
-	      </ul>
-	      <ul class="nav nav-pills nav-stacked">
-	        <li class="active"><a href="#/link/userLinks">My links</a></li>
-	      </ul>
-	      <ul class="nav nav-pills nav-stacked">
-	        <li class="active"><a href="#/link/newLink">Reduce link</a></li>
-	      </ul>
-	   </div>
-	   <div class="clearfix visible-lg"></div>
-   </div>
+      <ul class="list-group">
+		 <li class="list-group-item">
+		 	<button type="button" class="btn btn-link"  ng-click="getAllUserLink(id)">My links</button>
+		 </li>
+		 <li class="list-group-item">
+		 	<a href="#/user/addCorespondence" class="btn btn-link" role="button">My corespondence</a>
+		 </li>
+		 <li class="list-group-item">
+			 <a href="#/link/newLink" class="btn btn-link" role="button">Reduce link</a>
+		 </li>
+      </ul>
    </div>
    
   </div>

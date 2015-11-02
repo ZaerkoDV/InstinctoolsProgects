@@ -59,20 +59,7 @@ var LinkController = function($scope, $http) {
 		}).error(function() {
 			$scope.setError('Could not save save');
 		});
-	};
-	
-	//$scope.id=1708;
-	//get user links
-	$scope.getAllUserLink=function(id){
-		$http.get('link/getUserLinks/'+id+'/userLinks.json').success(function(links) {
-			$scope.linksHistory=links;
-			
-		}).error(function() {
-			$scope.setError('Could not load user link.');
-		});
-	};
-	
-		
+	};	
 	
 };
 

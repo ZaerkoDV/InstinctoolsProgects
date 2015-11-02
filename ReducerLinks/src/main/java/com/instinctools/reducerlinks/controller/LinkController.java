@@ -116,15 +116,5 @@ public class LinkController {
 		linkHistory.setLink(link);
 		linkHistoryService.saveEntity(linkHistory);
 	}
-	
-	@RequestMapping("/userLinks")
-	public String getUserLinksPage(ModelMap modelMap) {
-		return "link/userLinks";
-	}
 
-	@RequestMapping(value = "/getUserLinks/{idUser}/userLinks.json", method = RequestMethod.GET)
-	public @ResponseBody List<LinkHistory> getUserLinks(@PathVariable("idUser") Long idUser) {	
-		return linkHistoryService.getListLinkHistoryForUser(idUser);
-
-	}
 }
