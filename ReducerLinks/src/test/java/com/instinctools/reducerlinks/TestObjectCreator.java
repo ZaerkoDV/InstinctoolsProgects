@@ -24,10 +24,11 @@ import com.instinctools.reducerlinks.model.UserCorespondence;
 import com.instinctools.reducerlinks.model.UserSecurity;
 
 /**
- * This class are general for all test classes. All test classes use class TestObjectCreator for
- * create new test objects and delete after using.Class contain set of methods which return test
- * object and create object which need for creating. Also class contain methods which give right
- * delete test object after test.
+ * This class are general for all test classes. All test classes use class
+ * TestObjectCreator for create new test objects and delete after using.Class
+ * contain set of methods which return test object and create object which need
+ * for creating. Also class contain methods which give right delete test object
+ * after test.
  * 
  * @see org.junit
  * @see org.springframework.test
@@ -37,10 +38,11 @@ import com.instinctools.reducerlinks.model.UserSecurity;
  * @version 1.0 03.10.2015
  * @author Zaerko Denis
  */
-@Component(value="testObjectCreator")
+@Component(value = "testObjectCreator")
 public class TestObjectCreator {
 
-	//private static final Logger logger = LoggerFactory.getLogger(TestObjectCreator.class);
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(TestObjectCreator.class);
 
 	@Inject
 	@Qualifier("commonEntityDAO")
@@ -58,17 +60,17 @@ public class TestObjectCreator {
 		testUser.setFirstName("testFirstName");
 		testUser.setLastName("testLastName");
 		testUser.setMiddleName("testMiddleName");
-		testUser.setBirthday(new Date(date.getTime()-10));
-		commonEntityDAO.saveEntity((User)testUser);	
+		testUser.setBirthday(new Date(date.getTime() - 10));
+		commonEntityDAO.saveEntity((User) testUser);
 
 		return testUser;
 	}
 
-		public void deleteUserAfterTest(Long idUser){
-			commonEntityDAO.deleteEntityById(User.class, idUser);
-		}	
+	public void deleteUserAfterTest(Long idUser) {
+		commonEntityDAO.deleteEntityById(User.class, idUser);
+	}
 
-	public UserCorespondence createUserCorespondence(){
+	public UserCorespondence createUserCorespondence() {
 
 		User testUser = createUserForTest();
 		UserCorespondence testUserCorespondence = new UserCorespondence();
@@ -81,20 +83,20 @@ public class TestObjectCreator {
 		return testUserCorespondence;
 	}
 
-		public void deleteUserCorespondenceAfterTest(Long idUserCorespondence){
-			
-			UserCorespondence userCorespondence = (UserCorespondence) commonEntityDAO
-					.getEntityById(UserCorespondence.class, idUserCorespondence);
-			User user= userCorespondence.getUser();
-			
-			commonEntityDAO.deleteEntity(userCorespondence);
-			commonEntityDAO.deleteEntity(user);
-		}
+	public void deleteUserCorespondenceAfterTest(Long idUserCorespondence) {
 
-	public UserSecurity createUserSecurity(){
+		UserCorespondence userCorespondence = (UserCorespondence) commonEntityDAO
+				.getEntityById(UserCorespondence.class, idUserCorespondence);
+		User user = userCorespondence.getUser();
+
+		commonEntityDAO.deleteEntity(userCorespondence);
+		commonEntityDAO.deleteEntity(user);
+	}
+
+	public UserSecurity createUserSecurity() {
 
 		User testUser = createUserForTest();
-		UserSecurity testUserSecurity =new UserSecurity();
+		UserSecurity testUserSecurity = new UserSecurity();
 		testUserSecurity.setLogin("testLogin");
 		testUserSecurity.setPassword("testPassword");
 		testUserSecurity.setRole("author");
@@ -104,18 +106,19 @@ public class TestObjectCreator {
 		return testUserSecurity;
 	}
 
-		public void deleteUserSecurityAfterTest(Long idUserSecurity){
-			
-			UserSecurity userSecurity=(UserSecurity) commonEntityDAO.getEntityById(UserSecurity.class, idUserSecurity);
-			User user =userSecurity.getUser();
-			commonEntityDAO.deleteEntity(userSecurity);
-			commonEntityDAO.deleteEntity(user);
-		}
+	public void deleteUserSecurityAfterTest(Long idUserSecurity) {
 
-	public Link createLinkForTest(){
+		UserSecurity userSecurity = (UserSecurity) commonEntityDAO
+				.getEntityById(UserSecurity.class, idUserSecurity);
+		User user = userSecurity.getUser();
+		commonEntityDAO.deleteEntity(userSecurity);
+		commonEntityDAO.deleteEntity(user);
+	}
+
+	public Link createLinkForTest() {
 
 		User testUser = createUserForTest();
-		Link testLink=new Link();
+		Link testLink = new Link();
 		testLink.setTag("testTag");
 		testLink.setComment("testComment");
 		testLink.setShortUrl("https://www.google.by/");
@@ -126,32 +129,32 @@ public class TestObjectCreator {
 		return testLink;
 	}
 
-	public void deleteLinkAfterTest(Long idLink){
+	public void deleteLinkAfterTest(Long idLink) {
 
-		Link link=(Link) commonEntityDAO.getEntityById(Link.class, idLink);
-		User user =link.getUser();
+		Link link = (Link) commonEntityDAO.getEntityById(Link.class, idLink);
+		User user = link.getUser();
 		commonEntityDAO.deleteEntity(link);
 		commonEntityDAO.deleteEntity(user);
 	}
 
-	public  LinkHistory createLinkHistoryForTest(){
+	public LinkHistory createLinkHistoryForTest() {
 
-		Link testLink=createLinkForTest();
-		LinkHistory testLinkHistory =new LinkHistory();
-		testLinkHistory.setIpAddress("127.0.0.2");		
-		testLinkHistory.setLastCreate(new Date(date.getTime()-10));
-		testLinkHistory.setSumClick((long)0);
+		Link testLink = createLinkForTest();
+		LinkHistory testLinkHistory = new LinkHistory();
+		testLinkHistory.setIpAddress("127.0.0.2");
+		testLinkHistory.setLastCreate(new Date(date.getTime() - 10));
+		testLinkHistory.setSumClick((long) 0);
 		testLinkHistory.setLink(testLink);
 		commonEntityDAO.saveEntity(testLinkHistory);
 
 		return testLinkHistory;
 	}
 
-	public void deleteLinkHistoryAfterTest(Long idLinkHistory){
+	public void deleteLinkHistoryAfterTest(Long idLinkHistory) {
 
-		LinkHistory linkHistory =(LinkHistory)commonEntityDAO
-				.getEntityById(LinkHistory.class, idLinkHistory);		
-		final Long idLink=linkHistory.getLink().getIdLink();
+		LinkHistory linkHistory = (LinkHistory) commonEntityDAO.getEntityById(
+				LinkHistory.class, idLinkHistory);
+		final Long idLink = linkHistory.getLink().getIdLink();
 
 		commonEntityDAO.deleteEntity(linkHistory);
 		deleteLinkAfterTest(idLink);

@@ -109,13 +109,13 @@ public class LinkDAOImpl extends CommonEntityDAOImpl implements LinkDAO {
 		return list;
 	}
 	
+	//get unique value
 	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<String> getListUniqueTag(){
 		
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession()
 				.createCriteria(Link.class);
-		
 		criteria.setProjection(Projections.projectionList()
 		        .add( Projections.distinct(Projections.property("tag"))));
 		criteria.setMaxResults(20);
